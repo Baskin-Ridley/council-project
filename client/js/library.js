@@ -36,6 +36,7 @@ const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frida
 
     function renderCalendar() {
         const dt = new Date();
+        
 
         if (nav !== 0) {
             dt.setMonth(new Date().getMonth() + nav);
@@ -52,6 +53,7 @@ const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frida
               "August", "September", "October", "November", "December"];
 
         const emptyDays = firstDayOfMonth.getDay();
+        console.log(emptyDays)
 
         document.getElementById('monthDisplay').innerText = `${months[month]} ${year}`;
 
