@@ -78,6 +78,8 @@ const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frida
                     eventDiv.classList.add('event');
                     eventDiv.innerText = eventForDay.title;
                     dayTile.appendChild(eventDiv);
+                    dayTile.classList.remove('day');
+                    dayTile.classList.add('eventDay');
                 }
 
                 dayTile.addEventListener('click', () => openPopup(tileDate));
