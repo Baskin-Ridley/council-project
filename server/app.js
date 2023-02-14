@@ -25,10 +25,15 @@ app.use(express.static(path.join(__dirname, '../client'), {
       res.setHeader('Content-Type', 'image/png');
     } else if (filepath.endsWith('.jpg') || filepath.endsWith('.jpeg')) {
       res.setHeader('Content-Type', 'image/jpeg');
+    } else if (filepath.endsWith('.webp')) {
+      res.setHeader('Content-Type', 'image/webp');
     }
   }
 }));
 
 app.use("/", router);
+=======
+// Start the server
+const PORT = process.env.PORT || 8080;
 
 module.exports = app;
