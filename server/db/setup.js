@@ -1,10 +1,10 @@
 const fs = require("fs")
 const client = require("./connection")
 
-const clientSchema = fs.readFileSync('./user.sql').toString()
+const userSchema = fs.readFileSync('./db/users.sql').toString()
 
 const setupDatabase = async () => {
-    await client.query(clientSchema);
+    await client.query(userSchema);
     console.log("Database created!")
 }
 
