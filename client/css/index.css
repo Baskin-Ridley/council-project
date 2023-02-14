@@ -1,0 +1,127 @@
+body {
+    background: url(../assets/london_town.jpeg) teal;
+    background-size: auto;
+    height:100vh;
+    font-family: "Lato", sans-serif;
+  }
+
+h1 {
+    font-weight: 600;
+    text-align: center;
+    margin-top: 110px;
+} 
+  
+#header{
+    position:relative;
+}
+
+.absolute-center {
+position: absolute;
+margin: auto;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+}
+
+.container {
+height: 300px;
+width: 400px;
+border-radius: 10px;
+background-color: white;
+overflow: hidden;
+box-shadow: 5px 5px 10px #222;
+}
+
+.flex {
+display: flex;
+}
+
+.flex-column {
+flex-direction: column;
+}
+
+#tabs {
+justify-content: space-evenly;
+text-transform: uppercase;
+position: relative;
+}
+
+#undertab {
+content: "";
+height: 2px;
+width: 50%;
+position: absolute;
+background: black;
+bottom: 0;
+right: 0;
+}
+
+#tabs * {
+font-weight: 500;
+}
+
+#tabs h3:hover {
+cursor: pointer;
+}
+
+.login,
+.signup {
+align-items: center;
+text-align: center;
+width: 100%;
+top: 25px;
+}
+
+.login {
+transform: translateX(-90%);
+}
+
+.form-section {
+position: relative;
+}
+
+input{
+padding:10px 10px;
+margin:10px;
+border:none;
+border-bottom:1px solid black;
+}
+
+.login,
+.signup {
+position: absolute;
+transition: 0.3s ease-in-out;
+}
+
+.login p {
+width: 100%;
+}
+
+.signup {
+transform: translateX(+);
+}
+
+.btn {
+padding: 10px 45px;
+border-radius: 25px;
+margin: 10px 0;
+text-transform: uppercase;
+border: none;
+background: #333;
+color: white;
+}
+
+.btn:hover {
+background: rgb(31, 31, 31);
+}
+
+a{
+    text-decoration: none;
+    color:inherit;
+}
+
+a:hover,
+button:hover {
+cursor: pointer;
+}
