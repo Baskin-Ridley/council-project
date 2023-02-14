@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, '../client'), {
 }));
 
 app.use("/", router);
-=======
+
 // Start the server
 const PORT = process.env.PORT || 8080;
 
