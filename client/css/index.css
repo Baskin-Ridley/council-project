@@ -1,0 +1,133 @@
+body {
+    background: url(../assets/council_image.webp) teal;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    height:100vh;
+    font-family: "Lato", sans-serif;
+  }
+
+  h1 {
+    font-size: 30px;
+    color: black;
+    text-align: center;
+    margin: 7px;
+    padding-top: 100px;
+  }
+  
+#header{
+    position:relative;
+}
+
+.absolute-center {
+position: absolute;
+margin: auto;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+}
+
+.container{
+height: 300px;
+width: 400px;
+border-radius: 10px;
+background-color: white;
+overflow: hidden;
+box-shadow: 5px 5px 10px #222;
+}
+
+.flex {
+display: flex;
+}
+
+.flex-column {
+flex-direction: column;
+}
+
+#tabs {
+justify-content: space-evenly;
+text-transform: uppercase;
+position: relative;
+}
+
+#undertab {
+content: "";
+height: 2px;
+width: 50%;
+position: absolute;
+background: black;
+bottom: 0;
+right: 0;
+}
+
+#tabs * {
+font-weight: 500;
+}
+
+#tabs h3:hover {
+cursor: pointer;
+}
+
+.login,
+.signup {
+align-items: center;
+text-align: center;
+width: 100%;
+top: 25px;
+}
+
+.login {
+transform: translateX(-90%);
+}
+
+.form-section {
+position: relative;
+}
+
+input{
+padding:10px 10px;
+margin:10px;
+border:none;
+border-bottom:1px solid black;
+}
+
+.login,
+.signup {
+position: absolute;
+transition: 0.3s ease-in-out;
+}
+
+.login p {
+width: 100%;
+}
+
+.signup {
+transform: translateX(+);
+}
+
+.btn {
+padding: 10px 45px;
+border-radius: 5px;
+margin: 10px 0;
+text-transform: uppercase;
+border: none;
+background: #333;
+color: white;
+cursor: pointer;
+box-shadow: 0px 0px 2px rgb(128, 128, 128);
+}
+
+.btn:hover {
+background: rgb(100, 100, 100);
+}
+
+a{
+    text-decoration: none;
+    color:inherit;
+}
+
+a:hover,
+button:hover {
+cursor: pointer;
+}

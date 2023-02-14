@@ -3,6 +3,7 @@ const path = require('path');
 const app = express();
 const logger = require("./logger")
 const cors = require("cors")
+const router = require("./router/router")
 require("dotenv").config();
 
 //middleware
@@ -24,10 +25,12 @@ app.use(express.static(path.join(__dirname, '../client'), {
       res.setHeader('Content-Type', 'image/png');
     } else if (filepath.endsWith('.jpg') || filepath.endsWith('.jpeg')) {
       res.setHeader('Content-Type', 'image/jpeg');
+    } else if (filepath.endsWith('.webp')) {
+      res.setHeader('Content-Type', 'image/webp');
     }
   }
 }));
 
-
+app.use("/", router);
 
 module.exports = app;
