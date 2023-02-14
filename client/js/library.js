@@ -1,16 +1,3 @@
-let nav = 0;
-let clicked = null;
-// async function checkEvents() {
-//     const response = await fetch("http://localhost:3000/events")
-//     if (response.status == 200) {
-//         const events = await response.json();
-//     }else {
-//         let events = []
-//     }
-//     }
-    
-let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
-
 
 const calendar = document.getElementById('calendar');
 const newEventPopup = document.getElementById('newEventPopup');
@@ -20,8 +7,19 @@ const popup = document.getElementById('popup');
 const popupShadow= document.getElementById('popupShadow');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const isAdmin = window.localStorage.getItem("token").isAdmin
+console.log(isAdmin)
+const isLoggedIn= window.localStorage.getItem("token")? true : false
 
-    function openPopup(date) {
+let nav = 0;
+let clicked = null;
+
+
+
+
+////////////     POP-UP WINDOWS FUNCTIONS     ////////////////////////
+
+    function adminPopup(date) {
         clicked = date;
 
         const eventForDay = events.find(e => e.date === clicked);
@@ -42,11 +40,10 @@ const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frida
         const eventForDay = events.find(e => e.date === clicked);
 
         if (eventForDay) {
-            document.getElementById('eventText').innerText = eventForDay.title;
+            document.getElementById('evText').innerText = eventForDay.title;
             volunteerEventPopup.style.display = 'block';
+            popupShadow.style.display = 'block';
         } 
-
-        popupShadow.style.display = 'block';
     }
 
     function showPopup(date) {
@@ -54,18 +51,38 @@ const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frida
         const eventForDay = events.find(e => e.date === clicked);
 
         if (eventForDay) {
-            
             popup.style.display = 'block';
+            popupShadow.style.display = 'block';
         } 
-
-        popupShadow.style.display = 'block';
     }
-const isAdmin = window.localStorage.getItem("token").isAdmin
-      
 
-const isLoggedIn= window.localStorage.getItem("token")? true : false
-      
-     
+    function closePopup() {
+        eventTitleInput.classList.remove('error');
+        newEventPopup.style.display = 'none';
+        deleteEventPopup.style.display = 'none';
+        volunteerEventPopup.style.display = 'none';
+        popup.style.display = 'none';
+        popupShadow.style.display = 'none';
+        eventTitleInput.value = '';
+        clicked = null;
+        renderCalendar();
+    }
+
+    //////////////////////////////// CHECK EVENTS //////////////////////////////////////
+    
+    // async function checkEvents() {
+//     const response = await fetch("http://localhost:3000/events")
+//     if (response.status == 200) {
+//         const events = await response.json();
+//     }else {
+//         let events = []
+//     }
+//     }
+
+let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
+
+
+ //////////////////////////    DISPLAY CALENDAR      /////////////////////////////////////    
 
     function renderCalendar() {
         const dt = new Date();
@@ -116,9 +133,10 @@ const isLoggedIn= window.localStorage.getItem("token")? true : false
                 }
 
                 if (isLoggedIn && isAdmin){
-                    dayTile.addEventListener('click', () => openPopup(tileDate));
+                    dayTile.addEventListener('click', () => adminPopup(tileDate));
                 } else if (isLoggedIn) {
                     dayTile.addEventListener('click', () => volunteerPopup(tileDate));
+
                 } else {
                     dayTile.addEventListener('click', () => showPopup(tileDate));
                 }
@@ -132,15 +150,7 @@ const isLoggedIn= window.localStorage.getItem("token")? true : false
         }
     }
 
-    function closePopup() {
-        eventTitleInput.classList.remove('error');
-        newEventPopup.style.display = 'none';
-        deleteEventPopup.style.display = 'none';
-        popupShadow.style.display = 'none';
-        eventTitleInput.value = '';
-        clicked = null;
-        renderCalendar();
-    }
+  ///////////////     ACTION BUTTONS       ///////////////////////////
 
     async function saveEvent() {
         if (eventTitleInput.value) {
@@ -187,9 +197,9 @@ const isLoggedIn= window.localStorage.getItem("token")? true : false
 //         } 
 
 //         closePopup();
-
     
 //     }
+
 function deleteEvent(){
     events = events.filter(e => e.date !== clicked);
 localStorage.setItem('events', JSON.stringify(events));

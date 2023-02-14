@@ -136,16 +136,16 @@ p{
   #eventTitleInput.error {
     border: 2px solid red;
   }
-  #cancelButton, #deleteButton {
+  #cancelButton, #deleteButton, #volCancelButton {
     background-color: #d36c6c;
   }
   #saveButton, #closeButton, #closePopButton {
-    background-color: #92a1d1;
+    background-color: #819df7;
   }
   #volunteerButton {
-    background-color: #e8faed;
+    background-color: #3b794d;
   }
-  #eventText {
+  #eventText, #evText {
     font-size: 14px;
   }
   #popupShadow{
