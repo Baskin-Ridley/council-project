@@ -1,17 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const logger = require("./logger")
-const cors = require("cors")
-require("dotenv").config();
-
-//middleware
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(cors())
-app.use(logger)
-
-
+const dotenv = require('dotenv').config();
 
 // Serve static files from the 'client' directory
 app.use(express.static(path.join(__dirname, '../client'), {
@@ -24,10 +14,13 @@ app.use(express.static(path.join(__dirname, '../client'), {
       res.setHeader('Content-Type', 'image/png');
     } else if (filepath.endsWith('.jpg') || filepath.endsWith('.jpeg')) {
       res.setHeader('Content-Type', 'image/jpeg');
+    } else if (filepath.endsWith('.webp')) {
+      res.setHeader('Content-Type', 'image/webp');
     }
   }
 }));
 
-
+// Start the server
+const PORT = process.env.PORT || 8080;
 
 module.exports = app;
