@@ -110,7 +110,7 @@ p{
     background-color: #FFFCFF !important;
     box-shadow: none !important;
   }
-  #newEventPopup, #deleteEventPopup {
+  #newEventPopup, #deleteEventPopup, #volunteerEventPopup, #popup {
     display: none;
     z-index: 20;
     padding: 5%;
@@ -139,13 +139,16 @@ p{
   #cancelButton, #deleteButton {
     background-color: #d36c6c;
   }
-  #saveButton, #closeButton {
+  #saveButton, #closeButton, #closePopButton {
     background-color: #92a1d1;
+  }
+  #volunteerButton {
+    background-color: #e8faed;
   }
   #eventText {
     font-size: 14px;
   }
-  #popupDrop {
+  #popupShadow{
     display: none;
     top: 0px;
     left: 0px;
