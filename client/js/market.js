@@ -33,8 +33,9 @@ function newItemListing(){
   
   // Add all elements to the item container:
   itemContainer.appendChild(userContainer);
-  itemContainer.appendChild(itemPhoto);
   itemContainer.appendChild(itemTitle);
+
+  itemContainer.appendChild(itemPhoto);
   itemContainer.appendChild(itemDescription);
   
   // Add the item container to the community feed:
