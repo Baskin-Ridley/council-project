@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Florin Community Login</title>
+    <link rel="stylesheet" href="../css/index.css" />
+    <script src="../js/index.js"></script>
+   
+  </head>
+  <body>
+    <h1>FLORIN COMMUNITY BOARD</h1>
+    <div class="container flex flex-column absolute-center">
+      <div class="flex" id="tabs">
+        <h3 id="logintab" onclick="clickLogin()">login</h3>
+        <h3 id="signuptab" onclick="clickSignup()">sign up</h3>
+        <div id="undertab"></div>
+      </div>
+      <div class="form-section flex">
+        <div class="login flex flex-column">
+          <input type="text" id="login-username" placeholder="Name" />
+          <input type="password" id="login-pswd" placeholder="Password" />
+          <button class="btn" id="login-btn">Login</button>
+        </div>
+
+        <div class="signup flex flex-column">
+          <input type="text" id="signup-username" placeholder="Name" />
+          <input type="password" id="signup-pswd" placeholder="Password" />
+          <button class="btn" id="signup-btn">sign up</button>
+        </div>
+        <div class="signup"></div>
+      </div>
+    </div>
+  </body>
+</html>

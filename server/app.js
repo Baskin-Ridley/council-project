@@ -1,7 +1,18 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const dotenv = require('dotenv').config();
+const logger = require("./logger")
+const cors = require("cors")
+const router = require("./router/router")
+require("dotenv").config();
+
+//middleware
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(cors())
+app.use(logger)
+
+
 
 // Serve static files from the 'client' directory
 app.use(express.static(path.join(__dirname, '../client'), {
@@ -20,6 +31,8 @@ app.use(express.static(path.join(__dirname, '../client'), {
   }
 }));
 
+app.use("/", router);
+=======
 // Start the server
 const PORT = process.env.PORT || 8080;
 
