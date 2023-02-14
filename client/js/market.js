@@ -43,6 +43,47 @@ function newItemListing(){
   recylingFeed.appendChild(itemContainer);
 }
 
+function newPostPopup(){
+    // Get the elements
+    const newPostButton = document.getElementById("new-post-button");
+    const newPostPopup = document.getElementById("new-post-popup");
+    const close = document.getElementsByClassName("close")[0];
+    const titleInput = document.getElementById("title");
+    const contentInput = document.getElementById("content");
+    const imageURLInput = document.getElementById("imageURL");
+
+    // Add event listeners
+    newPostButton.addEventListener("click", () => {
+    newPostPopup.style.display = "block";
+    });
+
+    close.addEventListener("click", () => {
+    newPostPopup.style.display = "none";
+    });
+
+    window.addEventListener("click", (event) => {
+    if (event.target == newPostPopup) {
+        newPostPopup.style.display = "none";
+    }
+    });
+
+    // Handle form submit
+    const form = newPostPopup.querySelector('form');
+    form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = {
+        title: titleInput.value,
+        content: contentInput.value,
+        imageURL: imageURLInput.value,
+    };
+    // TODO: send data to server
+    });
+
+
+}
+
+newPostPopup();
 newItemListing();
 newItemListing();
+
 
