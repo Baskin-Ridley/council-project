@@ -1,6 +1,17 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const logger = require("./logger")
+const cors = require("cors")
+require("dotenv").config();
+
+//middleware
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(cors())
+app.use(logger)
+
+
 
 // Serve static files from the 'client' directory
 app.use(express.static(path.join(__dirname, '../client'), {
@@ -17,7 +28,6 @@ app.use(express.static(path.join(__dirname, '../client'), {
   }
 }));
 
-// Start the server
-app.listen(3000, () => {
-  console.log('Server started on port 3000');
-});
+
+
+module.exports = app;
