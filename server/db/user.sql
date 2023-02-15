@@ -10,3 +10,8 @@ CREATE TABLE users (
     isAdmin BOOLEAN DEFAULT FALSE NOT NULL,
     PRIMARY KEY (user_id)
 );
+
+INSERT INTO users (username, password, profile_pic, job_id, isAdmin) VALUES
+  ('johndoe', 'password123', 'https://placebear.com/100/100', '{123, 456}', FALSE),
+  ('janedoe', 'password456', 'https://placebear.com/100/100', '{789, 101112}', TRUE),
+  ('bobsmith', 'password789', 'https://placebear.com/100/100', '{131415, 161718}', FALSE);
