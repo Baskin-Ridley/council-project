@@ -1,4 +1,6 @@
 
+  let userId = 1
+  
   async function newItemListing() {
     const response = await fetch('http://localhost:3000/market');
     const data = await response.json();
@@ -26,6 +28,12 @@
       const userContainer = document.createElement('div');
       const userProfilePicture = document.createElement('img');
       const userName = document.createElement('p');
+      const deleteButton = document.createElement('button');
+
+      deleteButton.className = 'delete-button';
+      deleteButton.textContent = 'Delete';
+      console.log(item.user_id)
+      deleteButton.style.display = item.user_id === userId ? 'block' : 'none'; // Show the delete button if the user id matches
   
       // Set the attributes and content for the elements:
       console.log(item.title)
@@ -46,6 +54,7 @@
       itemContainer.appendChild(itemTitle);
       itemContainer.appendChild(itemPhoto);
       itemContainer.appendChild(itemDescription);
+      itemContainer.appendChild(deleteButton);
   
       // Add the item container to the community feed:
       const recylingFeed = document.getElementById('recyling-feed');
