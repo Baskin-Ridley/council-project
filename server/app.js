@@ -13,8 +13,6 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 app.use(logger)
 
-
-
 // Serve static files from the 'client' directory
 app.use(express.static(path.join(__dirname, '../client'), {
   setHeaders: (res, filepath) => {

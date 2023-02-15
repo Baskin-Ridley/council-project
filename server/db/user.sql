@@ -1,6 +1,3 @@
-
-
-
 CREATE TABLE users (
     user_id SERIAL NOT NULL UNIQUE,
     username VARCHAR(255) NOT NULL,
@@ -10,4 +7,5 @@ CREATE TABLE users (
     isAdmin BOOLEAN DEFAULT FALSE NOT NULL,
     PRIMARY KEY (user_id)
 );
+
 

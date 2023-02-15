@@ -36,9 +36,26 @@ async function loginUser(req, res) {
     }
 }
 
+async function findById(req, res) {
+    const data = parseInt(req.body.user_id)
 
+    try {
+        if (data) {
+            const user = await User.getById(data)
+            res.status(201).json(user)
+        } else {
+            throw new Error("Invalid properties")
+        }
+    } catch (err) {
+        res.status(404).json({
+            error: true,
+            message: err.message
+        })
+    }
+}
 
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    findById
 }
