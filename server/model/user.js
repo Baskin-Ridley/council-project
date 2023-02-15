@@ -3,10 +3,11 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 
 class User {
-  constructor({ user_id, user_username, user_password }) {
+  constructor({ user_id, user_username, user_password, user_isAdmin }) {
     this.id = user_id
     this.username = user_username
     this.password = user_password
+    this.isAdmin = user_isAdmin
   }
 
 
@@ -76,7 +77,7 @@ class User {
         throw new Error("Incorrect username or password")
       }
 
-      const token = jwt.sign({ sub: user.user_id, isAdmin: user.isadmin }, process.env.SECRET, { expiresIn: "1 day" })
+      const token = jwt.sign({ sub: user.user_id, isAdmin: user.isAdmin }, process.env.SECRET, { expiresIn: "1 day" })
 
       if (user.isAdmin == true) {
         const permission = true;
