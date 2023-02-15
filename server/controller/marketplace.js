@@ -26,8 +26,10 @@ async function deletePostMarketplace(req, res) {
 
     try {
         if (["marketplace_id"].every(key => Object.hasOwn(data, key))) {
-            const post = await Marketplace
-            res.status(201).json({ message: "post created successfully" })
+            const toDelete = await Marketplace.getById(parseInt(data.id))
+            const result = await toDelete.destroy()
+
+            res.status(204).json({ message: "post deleted successfully" })
         } else {
             throw new Error("Invalid properties")
         }
@@ -39,3 +41,5 @@ async function deletePostMarketplace(req, res) {
     }
 
 }
+
+module.exports = { createPostMarketplace, deletePostMarketplace }
