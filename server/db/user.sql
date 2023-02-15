@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS agents;
+
+
 
 CREATE TABLE users (
     user_id SERIAL NOT NULL UNIQUE,
@@ -10,3 +10,4 @@ CREATE TABLE users (
     isAdmin BOOLEAN DEFAULT FALSE NOT NULL,
     PRIMARY KEY (user_id)
 );
+

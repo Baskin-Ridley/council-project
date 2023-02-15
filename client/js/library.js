@@ -7,7 +7,7 @@ const popup = document.getElementById('popup');
 const popupShadow= document.getElementById('popupShadow');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const isAdmin = window.localStorage.getItem("token").isAdmin
+const isAdmin = window.localStorage.getItem("permission")? true : false
 console.log(isAdmin)
 const isLoggedIn= window.localStorage.getItem("token")? true : false
 
@@ -70,20 +70,22 @@ let clicked = null;
 
     //////////////////////////////// CHECK EVENTS //////////////////////////////////////
     
-    // async function checkEvents() {
-//     const response = await fetch("http://localhost:3000/events")
-//     if (response.status == 200) {
-//         const events = await response.json();
-//     }else {
-//         let events = []
-//     }
-//     }
+    async function checkEvents() {
+    const response = await fetch("http://localhost:3000/events")
+    if (response.status == 200) {
+        const events = await response.json();
+        return events
+    }else {
+        let events = []
+    }
+    }
 
-let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
+let events = checkEvents()
+console.log(events)
+// localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
 
 
  //////////////////////////    DISPLAY CALENDAR      /////////////////////////////////////    
-
 
     function renderCalendar() {
         const dt = new Date();
@@ -104,7 +106,7 @@ let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('e
               "August", "September", "October", "November", "December"];
 
         const emptyDays = firstDayOfMonth.getDay();
-        console.log(emptyDays)
+        // console.log(emptyDays)
 
         document.getElementById('monthDisplay').innerText = `${months[month]} ${year}`;
 
@@ -114,7 +116,8 @@ let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('e
             const dayTile = document.createElement('div');
             dayTile.classList.add('day');
 
-            const tileDate = `${i - emptyDays}/${month + 1}/${year}`;
+            
+            const tileDate = `${year}-${month + 1}-${i - emptyDays}`
 
             if (i > emptyDays) {
                 dayTile.innerText = i - emptyDays;
@@ -138,7 +141,6 @@ let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('e
                 } else if (isLoggedIn) {
                     dayTile.addEventListener('click', () => volunteerPopup(tileDate));
 
-
                 } else {
                     dayTile.addEventListener('click', () => showPopup(tileDate));
                 }
@@ -152,38 +154,31 @@ let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('e
         }
     }
 
-
+  ///////////////     ACTION BUTTONS       ///////////////////////////
 
     async function saveEvent() {
         if (eventTitleInput.value) {
             eventTitleInput.classList.remove('error');
             
-            // const options = {
-            //     method: "POST",
-            //     headers: {
-            //         'Accept': 'application/json',
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify({
-            //         date: clicked,
-            //         title: eventTitleInput.value,
-            //     })
-            // }
+            const options = {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    activity_date: clicked,
+                    title: eventTitleInput.value,
+                })
+            }
         
-            // const result = await fetch("http://localhost:3000/events", options);
+            const result = await fetch("http://localhost:3000/events", options);
         
-            // if (result.status == 201) {
-            //     closePopup();
-            // }
+            if (result.status == 201) {
+                closePopup();
+            }
 
 
-            events.push({
-                date: clicked,
-                title: eventTitleInput.value,
-            });
-
-            localStorage.setItem('events', JSON.stringify(events));
-            closePopup();
         } else {
             eventTitleInput.classList.add('error');
         }
@@ -202,10 +197,6 @@ let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('e
     
 //     }
 
-
-
-    
-//     }
 function deleteEvent(){
     events = events.filter(e => e.date !== clicked);
 localStorage.setItem('events', JSON.stringify(events));
@@ -257,3 +248,4 @@ async function volunteer(){
 
     initButtons();
     renderCalendar();
+
