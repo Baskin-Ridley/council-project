@@ -78,8 +78,6 @@ function newPostPopup(){
     };
     // TODO: send data to server
     });
-
-
 }
 
 newPostPopup();

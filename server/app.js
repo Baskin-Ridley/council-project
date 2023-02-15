@@ -32,8 +32,11 @@ app.use(express.static(path.join(__dirname, '../client'), {
 }));
 
 app.use("/", router);
+<<<<<<< HEAD
 
 // Start the server
 const PORT = process.env.PORT || 8080;
+=======
+>>>>>>> 62f8febc89f35ef6dc71091bb51107c754ca0d47
 
 module.exports = app;

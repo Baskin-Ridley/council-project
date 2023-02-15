@@ -25,6 +25,7 @@ class User {
   static async getByUsername(username) {
     try {
       const response = await client.query("SELECT * FROM users WHERE username = $1;", [username])
+      console.log(response.rows[0])
       return response.rows[0]
     } catch (err) {
       return ({
@@ -62,7 +63,7 @@ class User {
     if (!username || !password) {
       throw new Error("Please provide both an username and password")
     }
-    if (!(await this.getByUsername(username))) {
+    if (!await this.getByUsername(username)) {
       throw new Error("Username doesn't exists!")
     }
     try {
@@ -74,7 +75,10 @@ class User {
       if (!passwordMatch) {
         throw new Error("Incorrect username or password")
       }
-      const token = jwt.sign({ sub: user.id }, process.env.SECRET, { expiresIn: "1 day" })
+
+
+      let token = jwt.sign({ sub: user.user_id, isAdmin: user.isadmin }, process.env.SECRET, { expiresIn: "1 day" })
+
       return token
     } catch (err) {
       return ({
@@ -84,7 +88,6 @@ class User {
     }
   }
 }
-
 
 
 
