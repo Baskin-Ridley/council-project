@@ -52,16 +52,12 @@
       recylingFeed.appendChild(itemContainer);
     });
   }
-  
-
-
-
 
 function newPostPopup(){
     // Get the elements
     const newPostButton = document.getElementById("new-post-button");
     const newPostPopup = document.getElementById("new-post-popup");
-    const close = document.getElementsByClassName("close")[0];
+    const c lose = document.getElementsByClassName("close")[0];
     const titleInput = document.getElementById("title");
     const contentInput = document.getElementById("content");
     const imageURLInput = document.getElementById("imageURL");
@@ -86,18 +82,19 @@ function newPostPopup(){
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
       console.log("hello");
-    
+      console.log(imageURLInput.value)
       const data = {
         title: titleInput.value,
         content: contentInput.value,
-        imageURL: imageURLInput.value,
+        img_url: imageURLInput.value,
         /* username/profile picture get from token*/
+        user_id: 1
       };
       console.log(data);
       newPostPopup.style.display = "none";
     
       try {
-        const response = await fetch('http://localhost:3000/market', {
+        const response = await fetch('http://localhost:3000/market/create/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
