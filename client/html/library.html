@@ -9,7 +9,8 @@
     <script src="../js/library.js" defer></script>
   </head>
   <body>
-    
+    <img id="title-img" src="../assets/library.jpg"></img>
+    <h1>Florin Library</h1>
     <div id="container">
       <div id="header">
         <div id="monthDisplay"></div>
@@ -31,7 +32,10 @@
 
       <div id="calendar"></div>
     </div>
-
+    <p>Dear residents! <br> 
+    There are times that unfortunately our library needs to be closed due to shortage of staff. If we can organise some help from the community we can have the library open longer hours and maybe even in more days. It would be of benefit to all members of our community.<br>
+  The calendar shows days when we need more staff. If you are available in those days and would like to help us, please click on the day and then in the pop-out window, please choose "Volunteer" button to submit your information. A member of the library will be in contact with you to confirm the details.<br>
+</p>
     <div id="newEventPopup">
       <h2>New Event</h2>
 
@@ -44,13 +48,31 @@
     <div id="deleteEventPopup">
       <h2>Event</h2>
 
-      <p id="eventText"></p>
+      <p class="eventText" id = "eventText"></p>
 
       <button id="deleteButton">Delete</button>
       <button id="closeButton">Close</button>
     </div>
 
-    <div id="popupDrop"></div>
+    <div id="volunteerEventPopup">
+      <h2>Event</h2>
+
+
+      <p id="eventText"></p>
+
+      <button id="volunteerButton">Volunteer</button>
+      <button id="volCancelButton">Cancel</button>
+    </div>
+    
+    <div id="popup">
+ Dominika
+      <h2>You need to be logged-in to volunteer!</h2>
+
+
+       <button id="closePopButton">Close</button>
+    </div>
+
+    <div id="popupShadow"></div>
 
     
   </body>
