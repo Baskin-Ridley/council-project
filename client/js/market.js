@@ -1,17 +1,8 @@
-const item = {
-    photo: "https://placekitten.com/200/200",
-    title: "Item Title",
-    description: "Item description goes here.",
-    user: {
-      profilePicture: "https://placekitten.com/200/300",
-      username: "JohnDoe"
-    }
-  };
 
   async function newItemListing() {
     const response = await fetch('http://localhost:3000/market');
     const data = await response.json();
-  
+    console.log(data)
 
     data.forEach(async item => {
       console.log(item)
@@ -37,6 +28,7 @@ const item = {
       const userName = document.createElement('p');
   
       // Set the attributes and content for the elements:
+      console.log(item.title)
       itemContainer.className = 'item';
       itemPhoto.src = item.img_url;
       itemTitle.textContent = item.title;

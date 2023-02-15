@@ -4,7 +4,7 @@ class Marketplace {
 
 
 
-    constructor({ marketplace_id, posting_date, img_url, activity_date, user_id, isAvailable, content }) {
+    constructor({ marketplace_id, posting_date, img_url, activity_date, user_id, isAvailable, content, title }) {
 
         this.marketplace_id = marketplace_id;
         this.posting_date = posting_date;
@@ -13,7 +13,7 @@ class Marketplace {
         this.user_id = user_id;
         this.isAvailable = isAvailable;
         this.content = content;
-
+        this.title = title;
 
     }
 
