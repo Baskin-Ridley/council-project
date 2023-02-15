@@ -1,0 +1,72 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Lato", "sans-serif";
+}
+
+.content {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.event {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+.event-name {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.event-datetime {
+    font-size: 19px;
+    margin-bottom: 5px;
+}
+
+.event-location {
+    font-size: 18px;
+}
+
+.hidden {
+    display: none;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type=text], input[type=date], input[type=time] {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    font-size: 18px;
+}
+
+button[type=submit] {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #aaa;
+    border-radius: 5px;
+    cursor: pointer;
+}
