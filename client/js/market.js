@@ -83,7 +83,7 @@ function newPostPopup(){
       newPostPopup.style.display = "none";
     
       try {
-        const response = await fetch('http://localhost:8080/market', {
+        const response = await fetch('http://localhost:3000/market', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
