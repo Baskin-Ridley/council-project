@@ -32,6 +32,7 @@ class Marketplace {
 
 
     static async create(data) {
+
         if (!data) return ({
             error: true,
             message: "marketplace post is missing"
@@ -39,6 +40,23 @@ class Marketplace {
 
         try {
             const response = await client.query("INSERT INTO marketplace(activity_date,user_id,content,title) VALUES ($1,$2,$3,$4);", [data.activity_date, data.user_id, data.content, data.title])
+        } catch (err) {
+            return ({
+                error: true,
+                message: err.message
+            })
+        }
+
+    }
+
+    static async showAll() {
+
+        try {
+
+            const response = await client.query("SELECT * FROM marketplace")
+            console.log(response.rows)
+            return response.rows.map(m => new Marketplace(m))
+
         } catch (err) {
             return ({
                 error: true,
