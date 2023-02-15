@@ -69,22 +69,38 @@ function newPostPopup(){
 
     // Handle form submit
     const form = newPostPopup.querySelector('form');
-    form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    console.log("hello")
-    const data = {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      console.log("hello");
+    
+      const data = {
         title: titleInput.value,
         content: contentInput.value,
         imageURL: imageURLInput.value,
         /* username/profile picture get from token*/
-    };
-    console.log(data)
-    newPostPopup.style.display = "none";
-
-    // TODO: send data to server
+      };
+      console.log(data);
+      newPostPopup.style.display = "none";
     
-
-    });
+      try {
+        const response = await fetch('http://localhost:8080/market', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+    
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+    
+        const responseData = await response.json();
+        console.log(responseData);
+      } catch (error) {
+        console.error(error);
+      }
+    });  
 }
 
 newPostPopup();
