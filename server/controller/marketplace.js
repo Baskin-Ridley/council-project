@@ -24,15 +24,20 @@ async function createPostMarketplace(req, res) {
 
 async function deletePostMarketplace(req, res) {
 
-    const data = req.params.id;
-    console.log(data)
+    const data = parseInt(req.body.marketplace_id);
 
     try {
 
-        const toDelete = await Marketplace.getById(parseInt(data))
-        const result = await
-
-            res.status(204).json({ message: "post deleted successfully" })
+        const toDelete = await Marketplace.getById(data)
+        console.log(toDelete)
+        if (toDelete) {
+            console.log("deleting")
+            await Marketplace.destroy(data)
+            console.log("deleted")
+            res.status(200).json({ message: "post deleted successfully" })
+        } else {
+            throw new Error("cannot locate post with this ID")
+        }
 
     } catch (err) {
         res.status(404).json({
