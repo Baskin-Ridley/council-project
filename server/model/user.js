@@ -12,8 +12,10 @@ class User {
 
 
   static async getById(id) {
+
     try {
-      const response = await client.query("SELECT * FROM users WHERE id = $1;", [id])
+      const response = await client.query("SELECT * FROM users WHERE user_id = $1;", [id])
+      console.log(response.rows[0])
       return response.rows[0]
     } catch (err) {
       return ({

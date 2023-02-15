@@ -1,4 +1,4 @@
-const Marketplace = require("../model/marketplace");
+const { Marketplace } = require("../model/marketplace");
 
 async function createPostMarketplace(req, res) {
 
@@ -26,12 +26,13 @@ async function deletePostMarketplace(req, res) {
 
     const data = req.params.id;
     console.log(data)
+
     try {
 
         const toDelete = await Marketplace.getById(parseInt(data))
-        const result = await toDelete.destroy(data)
+        const result = await
 
-        res.status(204).json({ message: "post deleted successfully" })
+            res.status(204).json({ message: "post deleted successfully" })
 
     } catch (err) {
         res.status(404).json({
