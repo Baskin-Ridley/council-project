@@ -62,5 +62,4 @@ async function returnPostKnowledge(req, res) {
     }
 
 }
-
 module.exports = { createPostKnowledge, deletePostKnowledge, returnPostKnowledge }
