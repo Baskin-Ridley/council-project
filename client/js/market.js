@@ -105,6 +105,8 @@
       } catch (error) {
         console.error(error);
       }
+      location.reload();
+
     });
   }
   

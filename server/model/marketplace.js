@@ -53,7 +53,7 @@ class Marketplace {
 
         try {
 
-            const response = await client.query("SELECT * FROM marketplace")
+            const response = await client.query("SELECT * FROM marketplace ORDER BY marketplace_id DESC")
             console.log(response.rows)
             return response.rows.map(m => new Marketplace(m))
 
