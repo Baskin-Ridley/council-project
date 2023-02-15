@@ -43,6 +43,9 @@ function newItemListing(){
   recylingFeed.appendChild(itemContainer);
 }
 
+
+
+
 function newPostPopup(){
     // Get the elements
     const newPostButton = document.getElementById("new-post-button");
