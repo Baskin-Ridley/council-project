@@ -82,7 +82,7 @@ function newPostPopup(){
     newPostPopup.style.display = "none";
 
     // TODO: send data to server
-
+    
 
     });
 }
