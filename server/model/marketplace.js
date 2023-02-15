@@ -38,7 +38,7 @@ class Marketplace {
         })
 
         try {
-            const response = await client.query("INSERT INTO marketplace(activity_date,user_id,content) VALUE ($1,$2,$3);", [data.activity_date, data.user_id, data.content])
+            const response = await client.query("INSERT INTO marketplace(activity_date,user_id,content,title) VALUES ($1,$2,$3,$4);", [data.activity_date, data.user_id, data.content, data.title])
         } catch (err) {
             return ({
                 error: true,
@@ -48,15 +48,15 @@ class Marketplace {
 
     }
 
-    async delete(id) {
+    async destroy() {
 
-        if (!id) return ({
+        if (!this.id) return ({
             error: true,
             message: "marketplace post is missing"
         })
 
         try {
-            const response = await client.query("DELETE FROM marketplace * WHERE markeplace_id = $1;", [id])
+            const response = await client.query("DELETE FROM marketplace * WHERE marketplace_id = $1;", [this.id])
         } catch (err) {
             return ({
                 error: true,
@@ -64,6 +64,7 @@ class Marketplace {
             })
         }
 
+        return new Marketplace(response.row[0])
 
     }
 
