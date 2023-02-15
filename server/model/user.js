@@ -81,6 +81,7 @@ class User {
 
       const token = jwt.sign({ sub: user.user_id, isAdmin: user.isAdmin }, process.env.SECRET, { expiresIn: "1 day" })
 
+
       if (user.isAdmin == true) {
         const permission = true;
         return [token, permission]
