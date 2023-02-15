@@ -1,6 +1,7 @@
 CREATE TABLE landscape (
     landscape_id SERIAL NOT NULL,
     posting_date DATE DEFAULT (current_timestamp AT TIME ZONE 'GMT'),
+    title VARCHAR(500) NOT NULL,
     img_url VARCHAR(500),
     activity_date DATE,
     user_id SERIAL NOT NULL,
