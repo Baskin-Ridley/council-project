@@ -76,10 +76,14 @@ class User {
         throw new Error("Incorrect username or password")
       }
 
+      const token = jwt.sign({ sub: user.user_id, isAdmin: user.isadmin }, process.env.SECRET, { expiresIn: "1 day" })
 
-      let token = jwt.sign({ sub: user.user_id, isAdmin: user.isadmin }, process.env.SECRET, { expiresIn: "1 day" })
-
-      return token
+      if (user.isAdmin) {
+        const permission = true;
+        return [token, permission]
+      } else {
+        return [token]
+      }
     } catch (err) {
       return ({
         error: true,
