@@ -39,7 +39,7 @@ class Marketplace {
         })
 
         try {
-            const response = await client.query("INSERT INTO marketplace(activity_date,user_id,content,title) VALUES ($1,$2,$3,$4);", [data.activity_date, data.user_id, data.content, data.title])
+            const response = await client.query("INSERT INTO marketplace(activity_date,user_id,content,title, img_url) VALUES ($1,$2,$3,$4,$5);", [data.activity_date, data.user_id, data.content, data.title, data.img_url])
         } catch (err) {
             return ({
                 error: true,

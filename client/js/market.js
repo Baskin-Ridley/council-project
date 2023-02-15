@@ -53,67 +53,61 @@
     });
   }
 
-function newPostPopup(){
+  function newPostPopup() {
     // Get the elements
     const newPostButton = document.getElementById("new-post-button");
     const newPostPopup = document.getElementById("new-post-popup");
-    const c lose = document.getElementsByClassName("close")[0];
+    const close = document.querySelector(".close");
     const titleInput = document.getElementById("title");
     const contentInput = document.getElementById("content");
     const imageURLInput = document.getElementById("imageURL");
-
+  
     // Add event listeners
     newPostButton.addEventListener("click", () => {
-    newPostPopup.style.display = "block";
+      newPostPopup.style.display = "block";
     });
-
+  
     close.addEventListener("click", () => {
-    newPostPopup.style.display = "none";
+      newPostPopup.style.display = "none";
     });
-
+  
     window.addEventListener("click", (event) => {
-    if (event.target == newPostPopup) {
+      if (event.target === newPostPopup) {
         newPostPopup.style.display = "none";
-    }
+      }
     });
-
+  
     // Handle form submit
-    const form = newPostPopup.querySelector('form');
+    const form = newPostPopup.querySelector("form");
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
-      console.log("hello");
-      console.log(imageURLInput.value)
+  
       const data = {
         title: titleInput.value,
         content: contentInput.value,
         img_url: imageURLInput.value,
-        /* username/profile picture get from token*/
-        user_id: 1
+        user_id: 1, // get user_id from the token
       };
-      console.log(data);
+  
       newPostPopup.style.display = "none";
-    
+  
       try {
-        const response = await fetch('http://localhost:3000/market/create/', {
-          method: 'POST',
+        const response = await fetch("http://localhost:3000/market/create", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
         });
-    
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-    
+  
         const responseData = await response.json();
         console.log(responseData);
       } catch (error) {
         console.error(error);
       }
-    });  
-}
-
+    });
+  }
+  
 newPostPopup();
 newItemListing();
 
