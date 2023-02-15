@@ -84,6 +84,7 @@ let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('e
 
  //////////////////////////    DISPLAY CALENDAR      /////////////////////////////////////    
 
+
     function renderCalendar() {
         const dt = new Date();
         
@@ -137,6 +138,7 @@ let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('e
                 } else if (isLoggedIn) {
                     dayTile.addEventListener('click', () => volunteerPopup(tileDate));
 
+
                 } else {
                     dayTile.addEventListener('click', () => showPopup(tileDate));
                 }
@@ -150,7 +152,7 @@ let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('e
         }
     }
 
-  ///////////////     ACTION BUTTONS       ///////////////////////////
+
 
     async function saveEvent() {
         if (eventTitleInput.value) {
@@ -200,6 +202,10 @@ let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('e
     
 //     }
 
+
+
+    
+//     }
 function deleteEvent(){
     events = events.filter(e => e.date !== clicked);
 localStorage.setItem('events', JSON.stringify(events));

@@ -146,6 +146,12 @@ p{
     background-color: #3b794d;
   }
   #eventText, #evText {
+    background-color: #92a1d1;
+  }
+  #volunteerButton {
+    background-color: #e8faed;
+  }
+  #eventText {
     font-size: 14px;
   }
   #popupShadow{
