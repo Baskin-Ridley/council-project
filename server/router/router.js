@@ -11,6 +11,7 @@ router.post("/login", loginUser)
 router.post("/events", library.create)
 router.delete("/events/:date", library.destroy)
 router.get("/events", library.show)
+router.post("/volunteers", library.volunteer)
 
 
 module.exports = router
