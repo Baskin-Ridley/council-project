@@ -71,12 +71,19 @@ function newPostPopup(){
     const form = newPostPopup.querySelector('form');
     form.addEventListener("submit", (event) => {
     event.preventDefault();
+    console.log("hello")
     const data = {
         title: titleInput.value,
         content: contentInput.value,
         imageURL: imageURLInput.value,
+        /* username/profile picture get from token*/
     };
+    console.log(data)
+    newPostPopup.style.display = "none";
+
     // TODO: send data to server
+
+
     });
 }
 
