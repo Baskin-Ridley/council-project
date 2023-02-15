@@ -19,7 +19,7 @@ class Marketplace {
 
     static async getById(id) {
         try {
-            const response = await client.query("SELECT * FROM marketplace WHERE id = $1;", [id])
+            const response = await client.query("SELECT * FROM marketplace WHERE marketplace_id = $1;", [id])
             return response.rows[0]
         } catch (err) {
             return ({
@@ -66,23 +66,23 @@ class Marketplace {
 
     }
 
-    static async destroy() {
+    static async destroy(id) {
 
-        if (!this.id) return ({
+        if (!id) return ({
             error: true,
             message: "marketplace post is missing"
         })
 
         try {
-            const response = await client.query("DELETE FROM marketplace * WHERE marketplace_id = $1;", [this.id])
+            console.log("inbetween")
+            const response = await client.query("DELETE FROM marketplace * WHERE marketplace_id = $1;", [id])
+
         } catch (err) {
             return ({
                 error: true,
                 message: err.message
             })
         }
-
-        return new Marketplace(response.rows[0])
 
     }
 
