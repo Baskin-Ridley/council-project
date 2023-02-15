@@ -66,7 +66,7 @@ class Marketplace {
 
     }
 
-    async destroy() {
+    static async destroy() {
 
         if (!this.id) return ({
             error: true,
@@ -82,7 +82,7 @@ class Marketplace {
             })
         }
 
-        return new Marketplace(response.row[0])
+        return new Marketplace(response.rows[0])
 
     }
 
@@ -91,4 +91,4 @@ class Marketplace {
 
 }
 
-module.exports = Marketplace;
+module.exports = { Marketplace };
