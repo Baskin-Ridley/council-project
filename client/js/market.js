@@ -32,6 +32,9 @@
 
       deleteButton.className = 'delete-button';
       deleteButton.textContent = 'Delete';
+      deleteButton.onclick = function () {
+        deletePost(item.marketplace_id);
+      };
       console.log(item.user_id)
       deleteButton.style.display = item.user_id === userId ? 'block' : 'none'; // Show the delete button if the user id matches
   
@@ -60,6 +63,21 @@
       const recylingFeed = document.getElementById('recyling-feed');
       recylingFeed.appendChild(itemContainer);
     });
+  }
+
+  async function deletePost(id){
+    console.log({id})
+    const response = await fetch("http://localhost:3000/market/delete", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        marketplace_id: id
+      }),
+    });
+    location.reload()
+    console.log("deleted")
   }
 
   function newPostPopup() {
@@ -95,7 +113,7 @@
         title: titleInput.value,
         content: contentInput.value,
         img_url: imageURLInput.value,
-        user_id: 1, // get user_id from the token
+        user_id: userId, // get user_id from the token
       };
   
       newPostPopup.style.display = "none";
