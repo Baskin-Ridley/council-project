@@ -2,10 +2,12 @@ const Marketplace = require("../model/marketplace");
 
 async function createPostMarketplace(req, res) {
 
+
     const data = req.body;
 
+
     try {
-        if (["content", "user_id", "activity_date"].every(key => Object.hasOwn(data, key))) {
+        if (["content", "user_id", "activity_date", "title"].every(key => Object.hasOwn(data, key))) {
             const post = await Marketplace.create(data)
             res.status(201).json({ message: "post created successfully" })
         } else {
@@ -22,17 +24,15 @@ async function createPostMarketplace(req, res) {
 
 async function deletePostMarketplace(req, res) {
 
-    const data = req.body;
-
+    const data = req.params.id;
+    console.log(data)
     try {
-        if (["marketplace_id"].every(key => Object.hasOwn(data, key))) {
-            const toDelete = await Marketplace.getById(parseInt(data.id))
-            const result = await toDelete.destroy()
 
-            res.status(204).json({ message: "post deleted successfully" })
-        } else {
-            throw new Error("Invalid properties")
-        }
+        const toDelete = await Marketplace.getById(parseInt(data))
+        const result = await toDelete.destroy(data)
+
+        res.status(204).json({ message: "post deleted successfully" })
+
     } catch (err) {
         res.status(404).json({
             error: true,
@@ -42,4 +42,19 @@ async function deletePostMarketplace(req, res) {
 
 }
 
-module.exports = { createPostMarketplace, deletePostMarketplace }
+
+async function returnPostMarketplace(req, res) {
+
+    try {
+        const result = await Marketplace.showAll()
+        res.status(200).json(result)
+    } catch (err) {
+        res.status(404).json({
+            error: true,
+            message: err.message
+        })
+    }
+
+}
+
+module.exports = { createPostMarketplace, deletePostMarketplace, returnPostMarketplace }
