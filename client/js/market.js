@@ -8,40 +8,59 @@ const item = {
     }
   };
 
-function newItemListing(){
+  async function newItemListing() {
+    const response = await fetch('http://localhost:3000/market');
+    const data = await response.json();
   
-  const itemContainer = document.createElement("div");
-  const itemPhoto = document.createElement("img");
-  const itemTitle = document.createElement("h2");
-  const itemDescription = document.createElement("p");
-  const userContainer = document.createElement("div");
-  const userProfilePicture = document.createElement("img");
-  const userName = document.createElement("p");
-  
-  // Set the attributes and content for the elements:
-  itemContainer.className = "item";
-  itemPhoto.src = item.photo;
-  itemTitle.textContent = item.title;
-  itemDescription.textContent = item.description;
-  userContainer.className = "user";
-  userProfilePicture.src = item.user.profilePicture;
-  userName.textContent = item.user.username;
-  
-  // Add the user profile picture and username to the user container:
-  userContainer.appendChild(userProfilePicture);
-  userContainer.appendChild(userName);
-  
-  // Add all elements to the item container:
-  itemContainer.appendChild(userContainer);
-  itemContainer.appendChild(itemTitle);
 
-  itemContainer.appendChild(itemPhoto);
-  itemContainer.appendChild(itemDescription);
+    data.forEach(async item => {
+      console.log(item)
+      
+      let responseID = await fetch('http://localhost:3000/user/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user_id:item.user_id
+        })
+      });
+      let dataID = await responseID.json();
+      console.log(dataID)
+
+      const itemContainer = document.createElement('div');
+      const itemPhoto = document.createElement('img');
+      const itemTitle = document.createElement('h2');
+      const itemDescription = document.createElement('p');
+      const userContainer = document.createElement('div');
+      const userProfilePicture = document.createElement('img');
+      const userName = document.createElement('p');
   
-  // Add the item container to the community feed:
-  const recylingFeed = document.getElementById("recyling-feed");
-  recylingFeed.appendChild(itemContainer);
-}
+      // Set the attributes and content for the elements:
+      itemContainer.className = 'item';
+      itemPhoto.src = item.img_url;
+      itemTitle.textContent = item.title;
+      itemDescription.textContent = item.content;
+      userContainer.className = 'user';
+      userProfilePicture.src = dataID.profile_pic;
+      userName.textContent = dataID.username;
+  
+      // Add the user profile picture and username to the user container:
+      userContainer.appendChild(userProfilePicture);
+      userContainer.appendChild(userName);
+  
+      // Add all elements to the item container:
+      itemContainer.appendChild(userContainer);
+      itemContainer.appendChild(itemTitle);
+      itemContainer.appendChild(itemPhoto);
+      itemContainer.appendChild(itemDescription);
+  
+      // Add the item container to the community feed:
+      const recylingFeed = document.getElementById('recyling-feed');
+      recylingFeed.appendChild(itemContainer);
+    });
+  }
+  
 
 
 
@@ -107,7 +126,6 @@ function newPostPopup(){
 }
 
 newPostPopup();
-newItemListing();
 newItemListing();
 
 
