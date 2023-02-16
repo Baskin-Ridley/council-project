@@ -47,6 +47,7 @@ function registerForm() {
         })
       }
 
+
       const response = await fetch("http://localhost:3000/register", options);
       const data = await response.json();
       if (response.status == 201) {
@@ -63,7 +64,9 @@ function registerForm() {
   }
   sendRegistration()
 }
-
+document.getElementById("default-btn").addEventListener("click", async () => {
+  document.querySelector("#signup-img_url").value = "https://ih1.redbubble.net/image.3076102465.2435/st,small,845x845-pad,1000x1000,f8f8f8.jpg"
+})
 
 document.getElementById("login-btn").addEventListener("click", async () => {
   const userData = {
