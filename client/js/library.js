@@ -103,7 +103,7 @@ function showPopup(date, events) {
             const dayTile = document.createElement('div');
             dayTile.classList.add('day');
             let tileDate
-            if(month<10){ 
+            if(month <10){ 
                 tileDate = `${year}-0${month + 1}-${i - emptyDays}`
             } else{
                  tileDate = `${year}-${month + 1}-${i - emptyDays}`
@@ -119,13 +119,14 @@ function showPopup(date, events) {
                     dayTile.id = 'currentDay';
                 }
                 const response = await fetch("http://localhost:3000/events")
-                  let events  =[]
+                //   let events  =[]
                     if (response.status == 200) { 
-                          events= await response.json();
+                          let events= await response.json();
                         events.map(e=>{return e.activity_date = e.activity_date.slice(0,10)}) 
                         
                         const eventForDay = events.find(e => e.activity_date == tileDate);
-                        
+                        console.log(eventForDay)
+                        console.log(tileDate)
                         console.log(events)
                         if (eventForDay) {
                             const eventDiv = document.createElement('div');
@@ -137,7 +138,7 @@ function showPopup(date, events) {
 
                           
                         }
-                    }else{ events = []}
+                    }else{ let events = []}
                     const isAdmin = window.localStorage.getItem("permission")? true : false
                     
                     const isLoggedIn= window.localStorage.getItem("token")? true : false

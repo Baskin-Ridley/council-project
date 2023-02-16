@@ -1,5 +1,8 @@
 h1 {
-    font-size: 100px;
+  font-size: 30px;
+  margin-top: 30px;
+  text-align: center;
+  margin-bottom: 50px;
   }
   
   body {
@@ -59,7 +62,7 @@ h1 {
     font-family: Nunito, sans-serif;
     font-weight: 650;
     color: #000000;
-    font-size:calc(10px + 0.5vw);
+    font-size:calc(15px + 0.5vw);
     padding: 0.6em 0.9em ;
     background: #ffffff;
     text-decoration: none;
@@ -178,7 +181,7 @@ h1 {
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 150px;
+    margin-top: 170px;
     align-items: center;
   }
   
@@ -186,10 +189,10 @@ h1 {
     border: none;
     border-radius: 20px;
     margin-top: -110px ;
-    font-size: 25px;
+    font-size: 20px;
     text-align: center;
     width: 35%;
-    padding: 10px 10px;
+    padding: 5px 25px;
     box-shadow: 0 0 50px 20px rgba(0, 0, 0, 0.2);
   }
   
