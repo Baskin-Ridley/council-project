@@ -10,14 +10,14 @@
   console.log(userId)
 
   async function newItemListing() {
-    const response = await fetch('0.0.0.0:3000/market');
+    const response = await fetch('https://council-project-production-f9df.up.railway.app/market');
     const data = await response.json();
     console.log(data)
 
     data.forEach(async item => {
       console.log(item)
       
-      let responseID = await fetch('0.0.0.0:3000/user/', {
+      let responseID = await fetch('https://council-project-production-f9df.up.railway.app/user/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -75,7 +75,7 @@
 
   async function deletePost(id){
     console.log({id})
-    const response = await fetch("http://localhost:3000/market/delete", {
+    const response = await fetch("https://council-project-production-f9df.up.railway.app/market/delete", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
