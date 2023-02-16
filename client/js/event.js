@@ -1,25 +1,17 @@
-const eventFeed = document.getElementById('events-feed');
-const addEventButton = document.getElementById('add-event-btn');
-const addEventForm = document.getElementById('add-event-form');
-const eventForm = addEventForm.querySelector('form');
+const eventsElement = document.getElementById("events");
 
-// fetch events from controller & display
-function fetchEvents() {
-    fetch('/events')
-    .then(response => response.json())
-    .then(events => {
-        // clear 
-        eventFeed.textContent='';
-
-
-    })
-}
-
-// show form when add event btn is clicked
-function showAddEventForm() {
-    addEventForm.classList.remove('hidden');
-}
-
-addEventButton.addEventListener('click', showAddEventForm);
-
-fetchEvents();
+fetch("/event")
+  .then(response => response.json())
+  .then(events => {
+    eventsElement.innerHTML = events
+      .map(event => {
+        return `
+          <div class="event">
+            <h2 class="event__name">${event.name}</h2>
+            <p class="event__date">${event.date} @ ${event.time}</p>
+            <p class="event__description">${event.description}</p>
+          </div>
+        `;
+      })
+      .join("");
+  });
