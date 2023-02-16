@@ -40,6 +40,8 @@ class Marketplace {
 
         try {
             const response = await client.query("INSERT INTO marketplace(activity_date,user_id,content,title, img_url) VALUES ($1,$2,$3,$4,$5);", [data.activity_date, data.user_id, data.content, data.title, data.img_url])
+            const check = await client.query("SELECT marketplace_id FROM marketplace WHERE user_id = $1 LIMIT 1", [data.user_id]).then()
+            const updateUser = await client.query('UPDATE users SET job_id = array_append(job_id,$1) WHERE user_id = $2 ', [check.rows[0], data.user_id])
         } catch (err) {
             return ({
                 error: true,
