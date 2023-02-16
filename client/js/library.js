@@ -1,8 +1,12 @@
-// // //////// Hamburger menu on click event to pull out sidebar animation START /////////////
-document.querySelector(".hamburger-menu").addEventListener("click", () => {
-    document.querySelector(".container").classList.toggle("change")
+// // // //////// Hamburger menu on click event to pull out sidebar animation START /////////////
+// document.querySelector(".hamburger-menu").addEventListener("click", () => {
+//     document.querySelector(".container").classList.toggle("change")
+//   })
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector(".hamburger-menu").addEventListener("click", () => {
+      document.querySelector(".container").classList.toggle("change")
+    })
   })
-  
   /////////// Hamburger menu on click event to pull out sidebar animation END /////////////
 
   
@@ -54,7 +58,7 @@ function volunteerPopup(date, events) {
 }
 
 function showPopup(date, events) {
-        
+        clicked = date
     const eventForDay = events.find(e => e.activity_date == clicked);
 
     if (eventForDay) {
@@ -267,7 +271,14 @@ async function volunteer(){
         document.getElementById('closePopButton').addEventListener('click', closePopup);
         document.getElementById('cancelButton').addEventListener('click', closePopup);
     }
+    document.addEventListener("DOMContentLoaded", () => { initButtons();
+        renderCalendar();
+      })
+   
+ 
 
-    initButtons();
-    renderCalendar();
-
+    if (typeof exports !== 'undefined') {
+        module.exports = {
+            adminPopup, showPopup, closePopup, renderCalendar, saveEvent, deleteEvent, volunteer
+        };
+    }
