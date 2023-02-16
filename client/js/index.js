@@ -78,6 +78,7 @@ document.getElementById("login-btn").addEventListener("click", async () => {
 
   const response = await fetch("http://localhost:3000/login", options);
   const data = await response.json();
+  console.log(data)
   console.log(data.token[0])
   console.log(data.token[1])
 
@@ -89,7 +90,7 @@ document.getElementById("login-btn").addEventListener("click", async () => {
         localStorage.setItem("permission", data.token[1])
       }
       
-      window.location.assign("library.html")
+      // window.location.assign("library.html")
     
   } else {
       alert(data.error);

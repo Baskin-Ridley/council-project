@@ -1,19 +1,10 @@
-const getPayload = () => {
-    const token = window.localStorage.getItem("token")
-    if(!token) return false
-    const parts = token.split(".")
-    if (parts.length < 3) return false
-    return JSON.parse(atob(parts[1]))
-  }
-  let userId = getPayload().sub
-  console.log(userId)
 
 const calendar = document.getElementById('calendar');
 const newEventPopup = document.getElementById('newEventPopup');
 const deleteEventPopup = document.getElementById('deleteEventPopup');
 const volunteerEventPopup = document.getElementById('volunteerEventPopup');
 const popup = document.getElementById('popup');
-const popupShadow = document.getElementById('popupShadow');
+const popupShadow= document.getElementById('popupShadow');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
@@ -36,15 +27,7 @@ function adminPopup(date, events) {
     } else {
         newEventPopup.style.display = 'block';
     }
-    if (eventForDay) {
-        document.getElementById('eventText').innerText = eventForDay.title;
-        deleteEventPopup.style.display = 'block';
-    } else {
-        newEventPopup.style.display = 'block';
-    }
 
-    popupShadow.style.display = 'block';
-}
     popupShadow.style.display = 'block';
 }
 
@@ -71,56 +54,46 @@ function showPopup(date, events) {
     } 
 }
 
-function closePopup() {
-    eventTitleInput.classList.remove('error');
-    newEventPopup.style.display = 'none';
-    deleteEventPopup.style.display = 'none';
-    volunteerEventPopup.style.display = 'none';
-    popup.style.display = 'none';
-    popupShadow.style.display = 'none';
-    eventTitleInput.value = '';
-    clicked = null;
-    renderCalendar();
-}
+    function closePopup() {
+        eventTitleInput.classList.remove('error');
+        newEventPopup.style.display = 'none';
+        deleteEventPopup.style.display = 'none';
+        volunteerEventPopup.style.display = 'none';
+        popup.style.display = 'none';
+        popupShadow.style.display = 'none';
+        eventTitleInput.value = '';
+        clicked = null;
+        renderCalendar();
+    }
 
     
 
 
 
-//////////////////////////    DISPLAY CALENDAR      /////////////////////////////////////    
+ //////////////////////////    DISPLAY CALENDAR      /////////////////////////////////////    
 
     async function renderCalendar() {
         const dt = new Date();
         
 
-    if (nav !== 0) {
-        dt.setMonth(new Date().getMonth() + nav);
-    }
+        if (nav !== 0) {
+            dt.setMonth(new Date().getMonth() + nav);
+        }
 
-    const day = dt.getDate();
-    const month = dt.getMonth();
-    const year = dt.getFullYear();
-    const day = dt.getDate();
-    const month = dt.getMonth();
-    const year = dt.getFullYear();
+        const day = dt.getDate();
+        const month = dt.getMonth();
+        const year = dt.getFullYear();
 
-    const firstDayOfMonth = new Date(year, month, 1);
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const firstDayOfMonth = new Date(year, month, 1);
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const firstDayOfMonth = new Date(year, month, 1);
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-    const months = ["January", "February", "March", "April", "May", "June", "July",
-        "August", "September", "October", "November", "December"];
-    const months = ["January", "February", "March", "April", "May", "June", "July",
-        "August", "September", "October", "November", "December"];
+        const months = ["January", "February", "March", "April", "May", "June", "July",
+              "August", "September", "October", "November", "December"];
 
-    const emptyDays = firstDayOfMonth.getDay();
-    // console.log(emptyDays)
-    const emptyDays = firstDayOfMonth.getDay();
-    // console.log(emptyDays)
+        const emptyDays = firstDayOfMonth.getDay();
+        // console.log(emptyDays)
 
-    document.getElementById('monthDisplay').innerText = `${months[month]} ${year}`;
-    document.getElementById('monthDisplay').innerText = `${months[month]} ${year}`;
+        document.getElementById('monthDisplay').innerText = `${months[month]} ${year}`;
 
         calendar.innerHTML = '';
        
@@ -193,43 +166,39 @@ function closePopup() {
           
            
 
-        calendar.appendChild(dayTile);
-    }
-}
-
-///////////////     ACTION BUTTONS       ///////////////////////////
-
-async function saveEvent() {
-    if (eventTitleInput.value) {
-        eventTitleInput.classList.remove('error');
-
-        const options = {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                activity_date: clicked,
-                title: eventTitleInput.value,
-            })
+            calendar.appendChild(dayTile);
         }
+    }
 
-        const result = await fetch("http://localhost:3000/events", options);
+  ///////////////     ACTION BUTTONS       ///////////////////////////
 
-        if (result.status == 201) {
-            closePopup();
+    async function saveEvent() {
+        if (eventTitleInput.value) {
+            eventTitleInput.classList.remove('error');
+            
+            const options = {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    activity_date: clicked,
+                    title: eventTitleInput.value,
+                })
+            }
+        
+            const result = await fetch("http://localhost:3000/events", options);
+        
+            if (result.status == 201) {
+                closePopup();
+            }
+
+
+        } else {
+            eventTitleInput.classList.add('error');
         }
-
-
-    } else {
-        eventTitleInput.classList.add('error');
     }
-}
-    } else {
-        eventTitleInput.classList.add('error');
-    }
-}
 
 
    async function deleteEvent() {
@@ -271,43 +240,26 @@ async function volunteer(){
 }
 
 
-function initButtons() {
-    document.getElementById('nextButton').addEventListener('click', () => {
-        nav++;
-        renderCalendar();
-    });
-function initButtons() {
-    document.getElementById('nextButton').addEventListener('click', () => {
-        nav++;
-        renderCalendar();
-    });
+    function initButtons() {
+        document.getElementById('nextButton').addEventListener('click', () => {
+            nav++;
+            renderCalendar();
+        });
 
-    document.getElementById('backButton').addEventListener('click', () => {
-        nav--;
-        renderCalendar();
-    });
-    document.getElementById('backButton').addEventListener('click', () => {
-        nav--;
-        renderCalendar();
-    });
+        document.getElementById('backButton').addEventListener('click', () => {
+            nav--;
+            renderCalendar();
+        });
 
-    document.getElementById('saveButton').addEventListener('click', saveEvent);
-    document.getElementById('deleteButton').addEventListener('click', deleteEvent);
-    document.getElementById('volunteerButton').addEventListener('click', volunteer);
-    document.getElementById('closeButton').addEventListener('click', closePopup);
-    document.getElementById('volCancelButton').addEventListener('click', closePopup);
-    document.getElementById('closePopButton').addEventListener('click', closePopup);
-    document.getElementById('cancelButton').addEventListener('click', closePopup);
-}
-    document.getElementById('saveButton').addEventListener('click', saveEvent);
-    document.getElementById('deleteButton').addEventListener('click', deleteEvent);
-    document.getElementById('volunteerButton').addEventListener('click', volunteer);
-    document.getElementById('closeButton').addEventListener('click', closePopup);
-    document.getElementById('volCancelButton').addEventListener('click', closePopup);
-    document.getElementById('closePopButton').addEventListener('click', closePopup);
-    document.getElementById('cancelButton').addEventListener('click', closePopup);
-}
+        document.getElementById('saveButton').addEventListener('click', saveEvent);
+        document.getElementById('deleteButton').addEventListener('click', deleteEvent);
+        document.getElementById('volunteerButton').addEventListener('click', volunteer);
+        document.getElementById('closeButton').addEventListener('click', closePopup);
+        document.getElementById('volCancelButton').addEventListener('click', closePopup);
+        document.getElementById('closePopButton').addEventListener('click', closePopup);
+        document.getElementById('cancelButton').addEventListener('click', closePopup);
+    }
 
-initButtons();
-renderCalendar();
+    initButtons();
+    renderCalendar();
 
