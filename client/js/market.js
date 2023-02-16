@@ -149,4 +149,9 @@
 newPostPopup();
 newItemListing();
 
-
+module.exports = {
+  getPayload,
+  newItemListing,
+  deletePost,
+  newPostPopup
+}
