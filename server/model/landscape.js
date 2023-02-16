@@ -1,17 +1,16 @@
 const client = require("../db/connection")
 
-class Marketplace {
+class Landscape {
 
 
 
-    constructor({ marketplace_id, posting_date, img_url, activity_date, user_id, isAvailable, content, title }) {
+    constructor({ landscape_id, posting_date, img_url, activity_date, user_id, content, title }) {
 
-        this.marketplace_id = marketplace_id;
+        this.landscape_id = landscape_id;
         this.posting_date = posting_date;
         this.img_url = img_url;
         this.activity_date = activity_date;
         this.user_id = user_id;
-        this.isAvailable = isAvailable;
         this.content = content;
         this.title = title;
 
@@ -19,7 +18,7 @@ class Marketplace {
 
     static async getById(id) {
         try {
-            const response = await client.query("SELECT * FROM marketplace WHERE marketplace_id = $1;", [id])
+            const response = await client.query("SELECT * FROM landscape WHERE landscape_id = $1;", [id])
             return response.rows[0]
         } catch (err) {
             return ({
@@ -35,11 +34,11 @@ class Marketplace {
 
         if (!data) return ({
             error: true,
-            message: "marketplace post is missing"
+            message: "landscape post is missing"
         })
 
         try {
-            const response = await client.query("INSERT INTO marketplace(activity_date,user_id,content,title) VALUES ($1,$2,$3,$4);", [data.activity_date, data.user_id, data.content, data.title])
+            const response = await client.query("INSERT INTO landscape(activity_date,user_id,content,title) VALUES ($1,$2,$3,$4);", [data.activity_date, data.user_id, data.content, data.title])
         } catch (err) {
             return ({
                 error: true,
@@ -53,9 +52,9 @@ class Marketplace {
 
         try {
 
-            const response = await client.query("SELECT * FROM marketplace")
+            const response = await client.query("SELECT * FROM landscape")
             console.log(response.rows)
-            return response.rows.map(m => new Marketplace(m))
+            return response.rows.map(m => new landscape(m))
 
         } catch (err) {
             return ({
@@ -70,12 +69,11 @@ class Marketplace {
 
         if (!id) return ({
             error: true,
-            message: "marketplace post is missing"
+            message: "landscape post is missing"
         })
 
         try {
-            console.log("inbetween")
-            const response = await client.query("DELETE FROM marketplace * WHERE marketplace_id = $1;", [id])
+            const response = await client.query("DELETE FROM landscape * WHERE landscape_id = $1;", [id])
 
         } catch (err) {
             return ({
@@ -91,4 +89,4 @@ class Marketplace {
 
 }
 
-module.exports = { Marketplace };
+module.exports = { Landscape };

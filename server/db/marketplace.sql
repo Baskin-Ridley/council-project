@@ -10,3 +10,5 @@ CREATE TABLE marketplace (
     PRIMARY KEY(marketplace_id),
     CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
+
+-- Insert sample data into the marketplace table

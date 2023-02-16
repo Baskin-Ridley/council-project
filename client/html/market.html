@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/market.css">
+    <script src="../js/market.js" defer></script>
+    <title>Florin Recycling Board</title>
+</head>
+<body>
+    <h1>Florin Recycling Board</h1>
+    <button id="new-post-button">New Post</button>
+
+<div id="new-post-popup" class="post-popup">
+  <div class="post-popup-content">
+    <span class="close">&times;</span>
+    <h2>Create New Post</h2>
+    <form>
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required>
+      <label for="content">Content:</label>
+      <textarea id="content" name="content" required></textarea>
+      <label for="imageURL">Image URL:</label>
+      <input type="url" id="imageURL" name="imageURL">
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+    <section id="recyling-feed"label="recyling feed">
+    </section>
+</body>
+</html>

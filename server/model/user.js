@@ -3,16 +3,19 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 
 class User {
-  constructor({ user_id, user_username, user_password }) {
+  constructor({ user_id, user_username, user_password, user_isAdmin }) {
     this.id = user_id
     this.username = user_username
     this.password = user_password
+    this.isAdmin = user_isAdmin
   }
 
 
   static async getById(id) {
+
     try {
-      const response = await client.query("SELECT * FROM users WHERE id = $1;", [id])
+      const response = await client.query("SELECT * FROM users WHERE user_id = $1;", [id])
+      console.log(response.rows[0])
       return response.rows[0]
     } catch (err) {
       return ({
@@ -76,9 +79,10 @@ class User {
         throw new Error("Incorrect username or password")
       }
 
-      const token = jwt.sign({ sub: user.user_id, isAdmin: user.isadmin }, process.env.SECRET, { expiresIn: "1 day" })
+      const token = jwt.sign({ sub: user.user_id, isAdmin: user.isAdmin }, process.env.SECRET, { expiresIn: "1 day" })
 
-      if (user.isadmin == true) {
+
+      if (user.isAdmin == true) {
         const permission = true;
         return [token, permission]
       } else {
