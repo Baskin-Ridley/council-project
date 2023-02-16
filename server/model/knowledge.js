@@ -54,7 +54,7 @@ class Knowledge {
 
             const response = await client.query("SELECT * FROM knowledge")
             console.log(response.rows)
-            return response.rows.map(m => new knowledge(m))
+            return response.rows.map(m => new Knowledge(m))
 
         } catch (err) {
             return ({

@@ -64,7 +64,7 @@ class User {
     }
     try {
       const hashedPassword = await bcrypt.hash(password, Number(process.env.SALT))
-      const response = await client.query("INSERT INTO users (username, password, email) VALUES ($1, $2, $3);", [username, hashedPassword, email])
+      const response = await client.query("INSERT INTO users (username, password, user_email) VALUES ($1, $2, $3);", [username, hashedPassword, email])
       return ({
         message: "User registration successful"
       })
