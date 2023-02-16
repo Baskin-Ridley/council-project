@@ -27,6 +27,7 @@ function registerForm() {
     username: document.getElementById("signup-username").value,
     password: document.getElementById("signup-pswd").value,
     email: document.getElementById("signup-email").value
+
   }
 
   const sendRegistration = async () => {
@@ -41,7 +42,8 @@ function registerForm() {
         body: JSON.stringify({
           username: userData["username"],
           password: userData["password"],
-          email: userData["email"]
+          email: userData["email"],
+          profile_pic: "https://ih1.redbubble.net/image.3076102465.2435/st,small,845x845-pad,1000x1000,f8f8f8.jpg"
         })
       }
 
