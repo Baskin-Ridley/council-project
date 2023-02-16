@@ -32,9 +32,11 @@ describe('deletePost', () => {
       fetchMock.mockResponseOnce(JSON.stringify({}));
   
       const postId = 123;
+      const marketplace_id = postId;
       await deletePost(postId);
-  
+    
       expect(fetchMock.mock.calls.length).toBe(1);
+      console.log(fetchMock.mock.calls)
       expect(fetchMock.mock.calls[0][0]).toBe('http://localhost:3000/market/delete');
       expect(fetchMock.mock.calls[0][1].method).toBe('POST');
       expect(fetchMock.mock.calls[0][1].headers['Content-Type']).toBe('application/json');

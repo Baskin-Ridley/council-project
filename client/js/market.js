@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function deletePost(id){
-    console.log({id})
+    console.log("hello", id)
     const response = await fetch("http://localhost:3000/market/delete", {
       method: "POST",
       headers: {
