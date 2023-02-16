@@ -1,3 +1,4 @@
+
 INSERT INTO
     users (
         username,
@@ -68,7 +69,7 @@ VALUES
         'Giving away my retro gaming console. It has 30 classic games built in, including Super Mario Bros. and Pac-Man. Comes with two controllers and all necessary cables. Asking $50.',
         'https://upload.wikimedia.org/wikipedia/commons/a/a1/Game-Boy-Advance-SP-Mk1-Blue.jpg',
         '2023-02-15',
-        1,
+        3,
         FALSE
     ),
     (
