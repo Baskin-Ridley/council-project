@@ -10,14 +10,14 @@
   console.log(userId)
 
   async function newItemListing() {
-    const response = await fetch('http://localhost:3000/market');
+    const response = await fetch('0.0.0.0:3000/market');
     const data = await response.json();
     console.log(data)
 
     data.forEach(async item => {
       console.log(item)
       
-      let responseID = await fetch('http://localhost:3000/user/', {
+      let responseID = await fetch('0.0.0.0:3000/user/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
