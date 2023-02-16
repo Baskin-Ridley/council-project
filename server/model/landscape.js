@@ -39,6 +39,8 @@ class Landscape {
 
         try {
             const response = await client.query("INSERT INTO landscape(activity_date,user_id,content,title) VALUES ($1,$2,$3,$4);", [data.activity_date, data.user_id, data.content, data.title])
+            const check = await client.query("SELECT landscape_id FROM landscape WHERE user_id = $1 LIMIT 1", [data.user_id]).then()
+            const updateUser = await client.query('UPDATE users SET job_id = array_append(job_id,$1) WHERE user_id = $2 ', [check.rows[0], data.user_id])
         } catch (err) {
             return ({
                 error: true,
