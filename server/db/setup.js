@@ -1,4 +1,5 @@
 const fs = require("fs")
+const { setgroups } = require("process")
 const client = require("./connection")
 
 const userSchema = fs.readFileSync('./db/user.sql').toString()
@@ -14,6 +15,7 @@ const clear = fs.readFileSync('./db/clear.sql').toString()
 
 const setupDatabase = async () => {
 
+
     await client.query(clear);
     await client.query(userSchema);
     await client.query(marketSchema);
@@ -24,6 +26,10 @@ const setupDatabase = async () => {
     await client.query(seed);
 
     console.log("Database created!")
+
 }
 
 setupDatabase()
+
+
+module.exports = { setupDatabase };

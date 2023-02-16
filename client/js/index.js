@@ -26,7 +26,8 @@ function registerForm() {
   const userData = {
     username: document.getElementById("signup-username").value,
     password: document.getElementById("signup-pswd").value,
-    email: document.getElementById("signup-email").value
+    email: document.getElementById("signup-email").value,
+    img_url: document.getElementById("signup-img_url").value
 
   }
 
@@ -43,7 +44,8 @@ function registerForm() {
           username: userData["username"],
           password: userData["password"],
           email: userData["email"],
-          profile_pic: "https://ih1.redbubble.net/image.3076102465.2435/st,small,845x845-pad,1000x1000,f8f8f8.jpg"
+          img_url: userData["img_url"]
+
         })
       }
 
@@ -56,7 +58,7 @@ function registerForm() {
       document.querySelector("#signup-username").value = ""
       document.querySelector("#signup-pswd").value = ""
       document.querySelector("#signup-email").value = ""
-
+      document.querySelector("#signup-img_url").value = ""
     } catch (err) {
       console.log(err)
     }
@@ -91,13 +93,13 @@ document.getElementById("login-btn").addEventListener("click", async () => {
 
   if (response.status == 200) {
 
-      localStorage.setItem("token", data.token[0])
-      if(data.token[1]){
-        localStorage.setItem("permission", data.token[1])
-      }
-      
-      window.location.assign("home.html")
-  
+    localStorage.setItem("token", data.token[0])
+    if (data.token[1]) {
+      localStorage.setItem("permission", data.token[1])
+    }
+
+    window.location.assign("home.html")
+
 
   } else {
     alert(data.error);
