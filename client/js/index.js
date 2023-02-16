@@ -56,7 +56,7 @@ function registerForm() {
       document.querySelector("#signup-username").value = ""
       document.querySelector("#signup-pswd").value = ""
       document.querySelector("#signup-email").value = ""
-
+      document.querySelector("#signup-img_url").value = ""
     } catch (err) {
       console.log(err)
     }
