@@ -54,7 +54,7 @@ class Landscape {
 
             const response = await client.query("SELECT * FROM landscape")
             console.log(response.rows)
-            return response.rows.map(m => new landscape(m))
+            return response.rows.map(m => new Landscape(m))
 
         } catch (err) {
             return ({
