@@ -1,4 +1,6 @@
 const Event = require("../model/library")
+const Volunteer = require("../model/volunteer")
+const jwt = require("jsonwebtoken")
 
     async function create(req, res) {
     try {
@@ -29,12 +31,33 @@ const Event = require("../model/library")
 async function show(req, res) {
     try {
         const events = await Event.getAll();
+        console.log(events)
         res.status(200).json(events);
     } catch (err) {
         res.status(500).json({ "error": err.message })
     }
 }
 
+async function volunteer (req, res) {
+    try {
+        
+        const token = req.body.token
+        const payload = jwt.verify(token, process.env.SECRET)
+        
+        const id = payload.sub
+        const activity_date = req.body.activity_date
+        
+        const data = [id, activity_date]
+        
+            const user = await Volunteer.create(data);
+            console.log(user)
+            res.status(201).send(user);
+        
+        
+    } catch (err) {
+        res.status(404).json({ "error": err.message })
+    }
+}
 module.exports = {
-      create,  destroy, show
+      create,  destroy, show, volunteer
 }
