@@ -40,7 +40,7 @@ class Knowledge {
 
         try {
             const response = await client.query("INSERT INTO knowledge(user_id,content,title) VALUES ($1,$2,$3);", [data.user_id, data.content, data.title])
-            const check = await client.query("SELECT knowledge_id FROM knowledge WHERE user_id = $1 LIMIT 1", [data.user_id]).then()
+            const check = await client.query("SELECT knowledge_id FROM knowledge WHERE user_id = $1 LIMIT 1", [data.user_id]).then(client.query('UPDATE users SET job_id = array_append(job_id,$1) WHERE user_id = $2 ', [check.rows[0], data.user_id]))
             const updateUser = await client.query('UPDATE users SET job_id = array_append(job_id,$1) WHERE user_id = $2 ', [check.rows[0], data.user_id])
         } catch (err) {
             return ({
