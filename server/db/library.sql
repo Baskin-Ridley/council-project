@@ -4,9 +4,6 @@ CREATE TABLE library (
 );
 
 CREATE TABLE volunteers (
-   
-    user_id SERIAL NOT NULL,
-   
-    activity_date DATE
-  
+  user_id SERIAL NOT NULL,
+  activity_date DATE
 );
