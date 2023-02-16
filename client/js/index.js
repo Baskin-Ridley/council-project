@@ -94,7 +94,7 @@ document.getElementById("login-btn").addEventListener("click", async () => {
         localStorage.setItem("permission", data.token[1])
       }
       
-      // window.location.assign("library.html")
+      window.location.assign("home.html")
   
 
   } else {
