@@ -5,9 +5,9 @@ async function createPostMarketplace(req, res) {
 
     const data = req.body;
 
-
+    console.log(data)
     try {
-        if (["content", "user_id", "activity_date", "title"].every(key => Object.hasOwn(data, key))) {
+        if (["content", "user_id", "img_url", "title"].every(key => Object.hasOwn(data, key))) {
             const post = await Marketplace.create(data)
             res.status(201).json({ message: "post created successfully" })
         } else {
