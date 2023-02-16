@@ -64,3 +64,11 @@ describe("newPostPopup", () => {
     });
 });
 
+describe("getPayload", () => {
+    it("exists", () => {
+        expect(getPayload).toBeDefined();
+    });
+})
+
+
+

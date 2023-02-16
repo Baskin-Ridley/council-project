@@ -5,6 +5,7 @@ const getPayload = () => {
   if (parts.length < 3) return false
   return JSON.parse(atob(parts[1]))
 }
+
 let userId = getPayload().sub
 console.log(userId)
 
@@ -166,5 +167,6 @@ module.exports = {
   getPayload,
   newItemListing,
   deletePost,
-  newPostPopup
+  newPostPopup,
+  userId
 }
