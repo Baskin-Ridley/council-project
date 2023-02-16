@@ -123,7 +123,8 @@
         img_url: imageURLInput.value,
         user_id: userId, // get user_id from the token
       };
-  
+      console.log(data)
+
       newPostPopup.style.display = "none";
   
       try {
