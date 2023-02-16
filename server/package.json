@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --environment=jsdom --coverage",
+    "test": "jest --coverage",
     "connect": "node db/setup.js",
     "dev": "nodemon -L index.js",
     "start": "node index.js"
