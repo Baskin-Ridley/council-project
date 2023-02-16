@@ -3,11 +3,12 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 
 class User {
-  constructor({ user_id, user_username, user_password, user_isAdmin, user_email }) {
+  constructor({ user_id, user_username, user_password, user_isAdmin, user_email, profile_pic }) {
     this.id = user_id
     this.username = user_username
     this.email = user_email
     this.password = user_password
+    this.profile_pic = profile_pic
     this.isAdmin = user_isAdmin
   }
 
@@ -52,7 +53,7 @@ class User {
     }
   }
 
-  static async create({ username, password, email }) {
+  static async create({ username, password, email, img_url }) {
 
     if (!username || !password || !email) {
       throw new Error("Please provide both an username and password")
@@ -64,7 +65,11 @@ class User {
     }
     try {
       const hashedPassword = await bcrypt.hash(password, Number(process.env.SALT))
-      const response = await client.query("INSERT INTO users (username, password, user_email) VALUES ($1, $2, $3);", [username, hashedPassword, email])
+      if (img_url != undefined) {
+        const response = await client.query("INSERT INTO users (username, password, user_email,profile_pic ) VALUES ($1, $2, $3, $4);", [username, hashedPassword, email, img_url])
+      } else {
+        const response = await client.query("INSERT INTO users (username, password, user_email) VALUES ($1, $2, $3);", [username, hashedPassword, email])
+      }
       return ({
         message: "User registration successful"
       })
