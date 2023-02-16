@@ -11,7 +11,7 @@ async function registerUser(req, res) {
             throw new Error("Invalid properties")
         }
     } catch (err) {
-        res.status(404).json({
+        res.status(400).json({
             error: true,
             message: err.message
         })

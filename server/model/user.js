@@ -29,7 +29,7 @@ class User {
   static async getByUsername(username) {
     try {
       const response = await client.query("SELECT * FROM users WHERE username = $1;", [username])
-      console.log(response.rows[0])
+
       return response.rows[0]
     } catch (err) {
       return ({
@@ -42,7 +42,7 @@ class User {
   static async getByEmail(email) {
     try {
       const response = await client.query("SELECT * FROM users WHERE user_email = $1;", [email])
-      console.log(response.rows[0])
+
       return response.rows[0]
     } catch (err) {
       return ({
