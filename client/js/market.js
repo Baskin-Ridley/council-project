@@ -156,4 +156,9 @@ document.querySelector(".hamburger-menu").addEventListener("click", () => {
 newPostPopup();
 newItemListing();
 
-
+module.exports = {
+  getPayload,
+  newItemListing,
+  deletePost,
+  newPostPopup
+}
