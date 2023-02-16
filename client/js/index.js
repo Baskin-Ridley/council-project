@@ -45,7 +45,7 @@ function registerForm() {
         })
       }
 
-      const response = await fetch("http://localhost:3000/register", options);
+      const response = await fetch("https://council-project-production-f9df.up.railway.app/register", options);
       const data = await response.json();
       if (response.status == 201) {
         alert("Registered!");
@@ -81,7 +81,7 @@ document.getElementById("login-btn").addEventListener("click", async () => {
     })
   }
 
-  const response = await fetch("http://localhost:3000/login", options);
+  const response = await fetch("https://council-project-production-f9df.up.railway.app/login", options);
   const data = await response.json();
   console.log(data)
   console.log(data.token[0])

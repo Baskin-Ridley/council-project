@@ -128,7 +128,7 @@
       newPostPopup.style.display = "none";
   
       try {
-        const response = await fetch("http://localhost:3000/market/create", {
+        const response = await fetch("https://council-project-production-f9df.up.railway.app/market/create", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
