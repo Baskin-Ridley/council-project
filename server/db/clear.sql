@@ -7,3 +7,5 @@ DROP TABLE IF EXISTS knowledge;
 DROP TABLE IF EXISTS landscape;
 
 DROP TABLE IF EXISTS users;
+
+DROP TABLE IF EXISTS volunteers;
