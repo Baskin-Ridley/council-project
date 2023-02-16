@@ -1,20 +1,26 @@
+const getPayload = () => {
+  const token = window.localStorage.getItem("token")
+  if(!token) return false
+  const parts = token.split(".")
+  if (parts.length < 3) return false
+  return JSON.parse(atob(parts[1]))
+}
+
+let userId = getPayload().sub
+console.log(userId)
+
 // // //////// Hamburger menu on click event to pull out sidebar animation START /////////////
-document.querySelector(".hamburger-menu").addEventListener("click", () => {
-  document.querySelector(".container").classList.toggle("change")
+document.addEventListener("DOMContentLoaded", () => {
+
+  document.querySelector(".hamburger-menu").addEventListener("click", () => {
+    document.querySelector(".container").classList.toggle("change")
+  })
 })
 
 /////////// Hamburger menu on click event to pull out sidebar animation END /////////////
 
 
-  const getPayload = () => {
-    const token = window.localStorage.getItem("token")
-    if(!token) return false
-    const parts = token.split(".")
-    if (parts.length < 3) return false
-    return JSON.parse(atob(parts[1]))
-  }
-  let userId = getPayload().sub
-  console.log(userId)
+
 
   async function newItemListing() {
     const response = await fetch('http://localhost:3000/market');
@@ -81,7 +87,7 @@ document.querySelector(".hamburger-menu").addEventListener("click", () => {
   }
 
   async function deletePost(id){
-    console.log({id})
+    console.log("hello", id)
     const response = await fetch("http://localhost:3000/market/delete", {
       method: "POST",
       headers: {
@@ -106,7 +112,7 @@ document.querySelector(".hamburger-menu").addEventListener("click", () => {
   
     // Add event listeners
     newPostButton.addEventListener("click", () => {
-      newPostPopup.style.display = "block";
+            newPostPopup.style.display = "block";
     });
   
     close.addEventListener("click", () => {
@@ -152,8 +158,15 @@ document.querySelector(".hamburger-menu").addEventListener("click", () => {
 
     });
   }
-  
-newPostPopup();
-newItemListing();
+  document.addEventListener("DOMContentLoaded", () => {
+    newItemListing();
+    newPostPopup();
+  });
 
-
+module.exports = {
+  getPayload,
+  newItemListing,
+  deletePost,
+  newPostPopup,
+  userId
+}
