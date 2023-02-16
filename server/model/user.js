@@ -3,9 +3,10 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 
 class User {
-  constructor({ user_id, user_username, user_password, user_isAdmin }) {
+  constructor({ user_id, user_username, user_password, user_isAdmin, user_email }) {
     this.id = user_id
     this.username = user_username
+    this.email = user_email
     this.password = user_password
     this.isAdmin = user_isAdmin
   }
@@ -38,17 +39,32 @@ class User {
     }
   }
 
-  static async create({ username, password }) {
+  static async getByEmail(email) {
+    try {
+      const response = await client.query("SELECT * FROM users WHERE user_email = $1;", [email])
+      console.log(response.rows[0])
+      return response.rows[0]
+    } catch (err) {
+      return ({
+        error: true,
+        message: err.message
+      })
+    }
+  }
 
-    if (!username || !password) {
+  static async create({ username, password, email }) {
+
+    if (!username || !password || !email) {
       throw new Error("Please provide both an username and password")
     }
     if (await this.getByUsername(username)) {
       throw new Error("Username already taken")
+    } if (await this.getByEmail(email)) {
+      throw new Error("email already registered with")
     }
     try {
       const hashedPassword = await bcrypt.hash(password, Number(process.env.SALT))
-      const response = await client.query("INSERT INTO users (username, password) VALUES ($1, $2);", [username, hashedPassword])
+      const response = await client.query("INSERT INTO users (username, password, user_email) VALUES ($1, $2, $3);", [username, hashedPassword, email])
       return ({
         message: "User registration successful"
       })
@@ -80,6 +96,7 @@ class User {
       }
 
       const token = jwt.sign({ sub: user.user_id, isAdmin: user.isAdmin }, process.env.SECRET, { expiresIn: "1 day" })
+
 
       if (user.isAdmin == true) {
         const permission = true;

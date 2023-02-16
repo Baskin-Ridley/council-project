@@ -4,7 +4,7 @@ const markRouter = Router()
 
 
 markRouter.post("/create", createPostMarketplace)
-markRouter.delete("/delete/:id", deletePostMarketplace)
+markRouter.post("/delete", deletePostMarketplace)
 markRouter.get("/", returnPostMarketplace)
 
 module.exports = markRouter;

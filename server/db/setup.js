@@ -7,6 +7,8 @@ const librarySchema = fs.readFileSync('./db/library.sql').toString()
 const knowledgeSchema = fs.readFileSync('./db/knowledge.sql').toString()
 const landscapetSchema = fs.readFileSync('./db/landscape.sql').toString()
 const eventSchema = fs.readFileSync('./db/event.sql').toString();
+const seed = fs.readFileSync('./db/seed.sql').toString()
+
 const clear = fs.readFileSync('./db/clear.sql').toString()
 
 
@@ -19,6 +21,7 @@ const setupDatabase = async () => {
     await client.query(knowledgeSchema);
     await client.query(landscapetSchema);
     await client.query(eventSchema);
+    await client.query(seed);
 
     console.log("Database created!")
 }

@@ -1,113 +1,152 @@
-const item = {
-    photo: "https://placekitten.com/200/200",
-    title: "Item Title",
-    description: "Item description goes here.",
-    user: {
-      profilePicture: "https://placekitten.com/200/300",
-      username: "JohnDoe"
-    }
-  };
 
-function newItemListing(){
+  const getPayload = () => {
+    const token = window.localStorage.getItem("token")
+    if(!token) return false
+    const parts = token.split(".")
+    if (parts.length < 3) return false
+    return JSON.parse(atob(parts[1]))
+  }
+  let userId = getPayload().sub
+  console.log(userId)
+
+  async function newItemListing() {
+    const response = await fetch('http://localhost:3000/market');
+    const data = await response.json();
+    console.log(data)
+
+    data.forEach(async item => {
+      console.log(item)
+      
+      let responseID = await fetch('http://localhost:3000/user/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user_id:item.user_id
+        })
+      });
+      let dataID = await responseID.json();
+      console.log(dataID)
+
+      const itemContainer = document.createElement('div');
+      const itemPhoto = document.createElement('img');
+      const itemTitle = document.createElement('h2');
+      const itemDescription = document.createElement('p');
+      const userContainer = document.createElement('div');
+      const userProfilePicture = document.createElement('img');
+      const userName = document.createElement('p');
+      const deleteButton = document.createElement('button');
+
+      deleteButton.className = 'delete-button';
+      deleteButton.textContent = 'Delete';
+      deleteButton.onclick = function () {
+        deletePost(item.marketplace_id);
+      };
+      console.log(item.user_id)
+      deleteButton.style.display = item.user_id === userId ? 'block' : 'none'; // Show the delete button if the user id matches
   
-  const itemContainer = document.createElement("div");
-  const itemPhoto = document.createElement("img");
-  const itemTitle = document.createElement("h2");
-  const itemDescription = document.createElement("p");
-  const userContainer = document.createElement("div");
-  const userProfilePicture = document.createElement("img");
-  const userName = document.createElement("p");
+      // Set the attributes and content for the elements:
+      console.log(item.title)
+      itemContainer.className = 'item';
+      itemPhoto.src = item.img_url;
+      itemTitle.textContent = item.title;
+      itemDescription.textContent = item.content;
+      userContainer.className = 'user';
+      userProfilePicture.src = dataID.profile_pic;
+      userName.textContent = dataID.username;
   
-  // Set the attributes and content for the elements:
-  itemContainer.className = "item";
-  itemPhoto.src = item.photo;
-  itemTitle.textContent = item.title;
-  itemDescription.textContent = item.description;
-  userContainer.className = "user";
-  userProfilePicture.src = item.user.profilePicture;
-  userName.textContent = item.user.username;
+      // Add the user profile picture and username to the user container:
+      userContainer.appendChild(userProfilePicture);
+      userContainer.appendChild(userName);
   
-  // Add the user profile picture and username to the user container:
-  userContainer.appendChild(userProfilePicture);
-  userContainer.appendChild(userName);
+      // Add all elements to the item container:
+      itemContainer.appendChild(userContainer);
+      itemContainer.appendChild(itemTitle);
+      itemContainer.appendChild(itemPhoto);
+      itemContainer.appendChild(itemDescription);
+      itemContainer.appendChild(deleteButton);
   
-  // Add all elements to the item container:
-  itemContainer.appendChild(userContainer);
-  itemContainer.appendChild(itemTitle);
+      // Add the item container to the community feed:
+      const recylingFeed = document.getElementById('recyling-feed');
+      recylingFeed.appendChild(itemContainer);
+    });
+  }
 
-  itemContainer.appendChild(itemPhoto);
-  itemContainer.appendChild(itemDescription);
-  
-  // Add the item container to the community feed:
-  const recylingFeed = document.getElementById("recyling-feed");
-  recylingFeed.appendChild(itemContainer);
-}
+  async function deletePost(id){
+    console.log({id})
+    const response = await fetch("http://localhost:3000/market/delete", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        marketplace_id: id
+      }),
+    });
+    location.reload()
+    console.log("deleted")
+  }
 
-
-
-
-function newPostPopup(){
+  function newPostPopup() {
     // Get the elements
     const newPostButton = document.getElementById("new-post-button");
     const newPostPopup = document.getElementById("new-post-popup");
-    const close = document.getElementsByClassName("close")[0];
+    const close = document.querySelector(".close");
     const titleInput = document.getElementById("title");
     const contentInput = document.getElementById("content");
     const imageURLInput = document.getElementById("imageURL");
-
+  
     // Add event listeners
     newPostButton.addEventListener("click", () => {
-    newPostPopup.style.display = "block";
+      newPostPopup.style.display = "block";
     });
-
+  
     close.addEventListener("click", () => {
-    newPostPopup.style.display = "none";
+      newPostPopup.style.display = "none";
     });
-
+  
     window.addEventListener("click", (event) => {
-    if (event.target == newPostPopup) {
+      if (event.target === newPostPopup) {
         newPostPopup.style.display = "none";
-    }
+      }
     });
-
+  
     // Handle form submit
-    const form = newPostPopup.querySelector('form');
+    const form = newPostPopup.querySelector("form");
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
-      console.log("hello");
-    
+  
       const data = {
         title: titleInput.value,
         content: contentInput.value,
-        imageURL: imageURLInput.value,
-        /* username/profile picture get from token*/
+        img_url: imageURLInput.value,
+        user_id: userId, // get user_id from the token
       };
-      console.log(data);
+      console.log(data)
+
       newPostPopup.style.display = "none";
-    
+  
       try {
-        const response = await fetch('http://localhost:3000/market', {
-          method: 'POST',
+        const response = await fetch("http://localhost:3000/market/create", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
         });
-    
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-    
+  
         const responseData = await response.json();
         console.log(responseData);
       } catch (error) {
         console.error(error);
       }
-    });  
-}
+      location.reload();
 
+    });
+  }
+  
 newPostPopup();
-newItemListing();
 newItemListing();
 
 

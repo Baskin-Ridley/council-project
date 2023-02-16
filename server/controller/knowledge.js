@@ -1,14 +1,14 @@
-const { Marketplace } = require("../model/marketplace");
+const { Knowledge } = require("../model/knowledge");
 
-async function createPostMarketplace(req, res) {
+async function createPostKnowledge(req, res) {
 
 
     const data = req.body;
 
-    console.log(data)
+
     try {
-        if (["content", "user_id", "img_url", "title"].every(key => Object.hasOwn(data, key))) {
-            const post = await Marketplace.create(data)
+        if (["content", "user_id", "activity_date", "title"].every(key => Object.hasOwn(data, key))) {
+            const post = await Knowledge.create(data)
             res.status(201).json({ message: "post created successfully" })
         } else {
             throw new Error("Invalid properties")
@@ -22,17 +22,17 @@ async function createPostMarketplace(req, res) {
 
 }
 
-async function deletePostMarketplace(req, res) {
+async function deletePostKnowledge(req, res) {
 
-    const data = parseInt(req.body.marketplace_id);
+    const data = parseInt(req.body.knowledge_id);
 
     try {
 
-        const toDelete = await Marketplace.getById(data)
+        const toDelete = await Knowledge.getById(data)
         console.log(toDelete)
         if (toDelete) {
             console.log("deleting")
-            await Marketplace.destroy(data)
+            await Knowledge.destroy(data)
             console.log("deleted")
             res.status(200).json({ message: "post deleted successfully" })
         } else {
@@ -49,10 +49,10 @@ async function deletePostMarketplace(req, res) {
 }
 
 
-async function returnPostMarketplace(req, res) {
+async function returnPostKnowledge(req, res) {
 
     try {
-        const result = await Marketplace.showAll()
+        const result = await Knowledge.showAll()
         res.status(200).json(result)
     } catch (err) {
         res.status(404).json({
@@ -62,5 +62,4 @@ async function returnPostMarketplace(req, res) {
     }
 
 }
-
-module.exports = { createPostMarketplace, deletePostMarketplace, returnPostMarketplace }
+module.exports = { createPostKnowledge, deletePostKnowledge, returnPostKnowledge }

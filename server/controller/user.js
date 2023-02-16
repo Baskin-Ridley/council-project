@@ -4,7 +4,7 @@ async function registerUser(req, res) {
     const data = req.body
 
     try {
-        if (["username", "password"].every(key => Object.hasOwn(data, key))) {
+        if (["username", "password", "email"].every(key => Object.hasOwn(data, key))) {
             const user = await User.create(data)
             res.status(201).json({ message: "User succesfully registered" })
         } else {

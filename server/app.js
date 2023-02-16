@@ -5,6 +5,8 @@ const logger = require("./logger")
 const cors = require("cors")
 const router = require("./router/router")
 const markRouter = require("./router/marketRouter")
+const landRouter = require("./router/landRouter")
+const knowledgeRouter = require("./router/knowledgeRouter")
 require("dotenv").config();
 
 //middleware
@@ -32,4 +34,6 @@ app.use(express.static(path.join(__dirname, '../client'), {
 
 app.use("/", router);
 app.use("/market", markRouter);
+app.use("/knowledge", knowledgeRouter);
+app.use("/land", landRouter);
 module.exports = app;
