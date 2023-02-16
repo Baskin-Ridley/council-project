@@ -88,4 +88,13 @@ VALUES
         '2023-02-14',
         1,
         TRUE
+    ),
+    (
+        '2023-02-11',
+        'Billy the G.O.A.T',
+        'Giving away my Billy the goat. It is in excellent condition and has a great sound, he likes to nibble on your ears whilst you are sleeping. Comes with a leash and a portable toilet. Asking for $300.',
+        'https://www.vhv.rs/dpng/d/11-115440_funny-goat-png-transparent-png.png',
+        '2023-02-14',
+        1,
+        TRUE
     );
