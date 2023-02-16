@@ -6,7 +6,7 @@ const marketSchema = fs.readFileSync('./db/marketplace.sql').toString()
 const librarySchema = fs.readFileSync('./db/library.sql').toString()
 const knowledgeSchema = fs.readFileSync('./db/knowledge.sql').toString()
 const landscapetSchema = fs.readFileSync('./db/landscape.sql').toString()
-const eventSchema = fs.readFileSync('.db/event.sql').toString();
+const eventSchema = fs.readFileSync('./db/event.sql').toString();
 const clear = fs.readFileSync('./db/clear.sql').toString()
 
 
