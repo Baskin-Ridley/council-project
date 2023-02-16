@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --environment=jsdom --coverage",
     "connect": "node db/setup.js",
     "dev": "nodemon -L index.js",
     "start": "node index.js"
@@ -26,6 +26,5 @@
     "jest-each": "^29.4.3",
     "jest-fetch-mock": "^3.0.3",
     "jest-environment-jsdom": "^29.4.3"
-
   }
 }
