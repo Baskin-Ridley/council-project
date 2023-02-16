@@ -1,3 +1,12 @@
+const getPayload = () => {
+    const token = window.localStorage.getItem("token")
+    if(!token) return false
+    const parts = token.split(".")
+    if (parts.length < 3) return false
+    return JSON.parse(atob(parts[1]))
+  }
+  let userId = getPayload().sub
+  console.log(userId)
 
 const calendar = document.getElementById('calendar');
 const newEventPopup = document.getElementById('newEventPopup');
