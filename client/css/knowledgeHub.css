@@ -8,11 +8,15 @@ body {
   /* navbar container */
   .navbar {
     display: flex;
-    justify-content: flex-end; 
-    align-items: center; 
+    justify-content: flex-end;
+    align-items: center;
     color: #fff;
     padding: 40px 30px 30px 30px;
-    margin-left: 400px;
+    /* margin-left: 400px; */
+    margin-top: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
   
   .navbar-items a {
@@ -191,7 +195,10 @@ body {
 
 }
 h1 {
+    font-size: 30px;
+    margin-top: 100px;
     text-align: center;
+    margin-bottom: 50px;
 }
 #new-post-button, #submit{
     width: 75px;

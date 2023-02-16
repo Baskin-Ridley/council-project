@@ -1,4 +1,11 @@
+// // //////// Hamburger menu on click event to pull out sidebar animation START /////////////
+document.querySelector(".hamburger-menu").addEventListener("click", () => {
+    document.querySelector(".container").classList.toggle("change")
+  })
+  
+  /////////// Hamburger menu on click event to pull out sidebar animation END /////////////
 
+  
 const calendar = document.getElementById('calendar');
 const newEventPopup = document.getElementById('newEventPopup');
 const deleteEventPopup = document.getElementById('deleteEventPopup');
@@ -16,12 +23,15 @@ let clicked = null;
 
 
 ////////////     POP-UP WINDOWS FUNCTIONS     ////////////////////////
+
 function adminPopup(date, events) {
         
     clicked = date
-    const eventForDay = events.find(e => e.activity_date == date);
+    console.log(events)
+    const eventForDay = events.find(e => e.activity_date == clicked);
 
     if (eventForDay) {
+       
         document.getElementById('eventText').innerText = eventForDay.title;
         deleteEventPopup.style.display = 'block';
     } else {
@@ -31,11 +41,10 @@ function adminPopup(date, events) {
     popupShadow.style.display = 'block';
 }
 
-
-function volunteerPopup(date,events) {
+function volunteerPopup(date, events) {
     clicked = date
 
-    const eventForDay = events.find(e => e.activity_date == date);
+    const eventForDay = events.find(e => e.activity_date == clicked);
 
     if (eventForDay) {
         document.getElementById('evText').innerText = eventForDay.title;
@@ -46,7 +55,7 @@ function volunteerPopup(date,events) {
 
 function showPopup(date, events) {
         
-    const eventForDay = events.find(e => e.activity_date == date);
+    const eventForDay = events.find(e => e.activity_date == clicked);
 
     if (eventForDay) {
         popup.style.display = 'block';
@@ -119,15 +128,13 @@ function showPopup(date, events) {
                     dayTile.id = 'currentDay';
                 }
                 const response = await fetch("http://localhost:3000/events")
-                //   let events  =[]
+                  let events  =[]
                     if (response.status == 200) { 
-                          let events= await response.json();
+                          events= await response.json();
                         events.map(e=>{return e.activity_date = e.activity_date.slice(0,10)}) 
                         
                         const eventForDay = events.find(e => e.activity_date == tileDate);
-                        console.log(eventForDay)
-                        console.log(tileDate)
-                        console.log(events)
+                       
                         if (eventForDay) {
                             const eventDiv = document.createElement('div');
                             eventDiv.classList.add('event');
@@ -138,13 +145,13 @@ function showPopup(date, events) {
 
                           
                         }
-                    }else{ let events = []}
+                    }else{ events = []}
                     const isAdmin = window.localStorage.getItem("permission")? true : false
                     
                     const isLoggedIn= window.localStorage.getItem("token")? true : false
-                    console.log(isLoggedIn)
+                    
                         if (isLoggedIn && isAdmin){
-                            
+                                                       
                             dayTile.addEventListener('click', () => adminPopup(tileDate, events));
                         } else if (isLoggedIn) {
                                                                 
