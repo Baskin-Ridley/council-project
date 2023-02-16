@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+
+    "test": "jest --coverage",
     "connect": "node db/setup.js",
     "dev": "nodemon -L index.js",
     "start": "node index.js"
@@ -27,5 +28,6 @@
     "jest-environment-jsdom": "^29.4.3",
     "jest-fetch-mock": "^3.0.3",
     "nodemon": "^2.0.20"
+
   }
 }

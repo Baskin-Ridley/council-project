@@ -28,6 +28,7 @@ function registerForm() {
     password: document.getElementById("signup-pswd").value,
     email: document.getElementById("signup-email").value,
     img_url: document.getElementById("signup-img_url").value
+
   }
 
   const sendRegistration = async () => {
@@ -44,6 +45,7 @@ function registerForm() {
           password: userData["password"],
           email: userData["email"],
           img_url: userData["img_url"]
+
         })
       }
 
