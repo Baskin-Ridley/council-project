@@ -21,8 +21,11 @@ A postgres database.
 The dotenv file needs to include:
 
 DBCONNECTIONSTRING=<postgres database link>
+
 PORT=XXXX
+
 SALT=12
+    
 SECRET=<your deepest darkest secret>
 
 ## Installation
@@ -51,7 +54,8 @@ From the server run `npm run dev` to start the development server.
 
 Each change you make will be reflected here http://localhost:XXXX/html/index.html
 
-Enjoy your council.
+Enjoy the wonderful app.
+
 
 
 
