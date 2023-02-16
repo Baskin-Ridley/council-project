@@ -91,16 +91,26 @@ function closePopup() {
     const day = dt.getDate();
     const month = dt.getMonth();
     const year = dt.getFullYear();
+    const day = dt.getDate();
+    const month = dt.getMonth();
+    const year = dt.getFullYear();
 
+    const firstDayOfMonth = new Date(year, month, 1);
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
     const firstDayOfMonth = new Date(year, month, 1);
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
     const months = ["January", "February", "March", "April", "May", "June", "July",
         "August", "September", "October", "November", "December"];
+    const months = ["January", "February", "March", "April", "May", "June", "July",
+        "August", "September", "October", "November", "December"];
 
     const emptyDays = firstDayOfMonth.getDay();
     // console.log(emptyDays)
+    const emptyDays = firstDayOfMonth.getDay();
+    // console.log(emptyDays)
 
+    document.getElementById('monthDisplay').innerText = `${months[month]} ${year}`;
     document.getElementById('monthDisplay').innerText = `${months[month]} ${year}`;
 
         calendar.innerHTML = '';
@@ -207,6 +217,10 @@ async function saveEvent() {
         eventTitleInput.classList.add('error');
     }
 }
+    } else {
+        eventTitleInput.classList.add('error');
+    }
+}
 
 
    async function deleteEvent() {
@@ -253,12 +267,29 @@ function initButtons() {
         nav++;
         renderCalendar();
     });
+function initButtons() {
+    document.getElementById('nextButton').addEventListener('click', () => {
+        nav++;
+        renderCalendar();
+    });
 
     document.getElementById('backButton').addEventListener('click', () => {
         nav--;
         renderCalendar();
     });
+    document.getElementById('backButton').addEventListener('click', () => {
+        nav--;
+        renderCalendar();
+    });
 
+    document.getElementById('saveButton').addEventListener('click', saveEvent);
+    document.getElementById('deleteButton').addEventListener('click', deleteEvent);
+    document.getElementById('volunteerButton').addEventListener('click', volunteer);
+    document.getElementById('closeButton').addEventListener('click', closePopup);
+    document.getElementById('volCancelButton').addEventListener('click', closePopup);
+    document.getElementById('closePopButton').addEventListener('click', closePopup);
+    document.getElementById('cancelButton').addEventListener('click', closePopup);
+}
     document.getElementById('saveButton').addEventListener('click', saveEvent);
     document.getElementById('deleteButton').addEventListener('click', deleteEvent);
     document.getElementById('volunteerButton').addEventListener('click', volunteer);
