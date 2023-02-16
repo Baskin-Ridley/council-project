@@ -25,7 +25,7 @@ DBCONNECTIONSTRING=<postgres database link>
 PORT=XXXX
 
 SALT=12
-
+    
 SECRET=<your deepest darkest secret>
 
 ## Installation
