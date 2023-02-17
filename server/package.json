@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
 
-    "test": "jest --coverage",
+    "test": "jest ",
     "connect": "node db/setup.js",
     "dev": "nodemon -L index.js",
     "start": "node index.js"
