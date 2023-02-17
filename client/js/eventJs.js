@@ -66,6 +66,7 @@ const getPayload = () => {
         itemPhoto.src = item.img_url;
         itemTitle.textContent = item.title;
         itemDate.textContent = item.activity_date.slice(0, 10);
+        console.log(itemDate.textContent)
         itemDescription.textContent = item.content;
         userContainer.className = 'user';
         userProfilePicture.src = dataID.profile_pic;
