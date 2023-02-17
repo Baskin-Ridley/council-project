@@ -4,14 +4,14 @@ async function registerUser(req, res) {
     const data = req.body
 
     try {
-        if (["username", "password", "email"].every(key => Object.hasOwn(data, key))) {
+        if (["username", "password", "email", "img_url"].every(key => Object.hasOwn(data, key))) {
             const user = await User.create(data)
             res.status(201).json({ message: "User succesfully registered" })
         } else {
             throw new Error("Invalid properties")
         }
     } catch (err) {
-        res.status(404).json({
+        res.status(400).json({
             error: true,
             message: err.message
         })

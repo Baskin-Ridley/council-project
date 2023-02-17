@@ -1,72 +1,335 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 body {
-    font-family: "Lato", "sans-serif";
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-.content {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
 }
+ /*//////////////////////// NAVBAR CSS START //////////////////////////////*
+  /* navbar container */
+  .navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: #fff;
+    padding: 40px 30px 30px 30px;
+    /* margin-left: 400px; */
+    margin-top: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  
+  .navbar-items a {
+    margin-top: 10px;
+  }
+  
+  /* Used to be the old title but switched to icon now */
+  /* .title {
+    font-size: 35px;
+    font-weight: 900;
+    color: #fff;
+    position: absolute;
+    left: 30px;
+    text-align: left;
+    text-transform: capitalize;
+    letter-spacing: 0.5rem;
+    text-shadow: 0.3rem 0.3rem 0.3rem #000;
+  } */
+  
+  #title-img {
+    width: calc(30% + 0.390625vw);
+    max-width: 560px;
+    height: auto;
+    position: absolute;
+    left: 30px;
+    top: 15px;
+  }
+  @media screen and (max-width: 500px){
+    #title-img{
+    width: 200px;
+    left: 15px;
+    }}
+  
+  
+  /* navbar buttons */
+  a {
+    border-radius: 10px;
+    border: none;
+    font-family: Nunito, sans-serif;
+    font-weight: 650;
+    color: #000000;
+    font-size:calc(10px + 0.5vw);
+    padding: 0.6em 0.9em ;
+    background: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+    margin: auto 10px auto 10px;
+  }
+  
+  /* Navbar hover effect */
+  a:hover {
+    background-color: rgb(4, 4, 4);
+    border-color: rgb(200, 200, 200);
+    color: #fff;
+  }
+  
+  
+  /*//////////////////////// NAVBAR CSS END //////////////////////////////*/
+  
+  
+  
+  /*//////////////////////// HAMBURGER CSS START //////////////////////////////*/
+  
+  .container {
+  display: none;
+  }
+  
+  .hamburger-menu {
+  width: 2rem;
+  height: 2rem;
+  position: fixed;
+  top: 2rem;
+  right: 5rem;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  cursor: pointer;
+  }
+  
+  .line {
+  width: 100%;
+  height: 0.2rem;
+  background-color: white;
+  box-shadow: 0.1rem 0.2rem rgba(0,0,0,0.2);
+  }
+  
+  .sidebar {
+  width: 15rem;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: -40rem;
+  background-color: white;
+  transition: right 0.5s;
+  z-index: 1;
+  }
+  
+  .change .sidebar {
+  right: 0;
+  }
+  
+  .menu {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  list-style: none;
+  min-width: 200px;
+  }
+  
+  .menu-item {
+  text-align: center;
+  }
+  
+  .menu-link {
+  font-family: Nunito, sans-serif;
+  font-size: 1.5rem;
+  color: black;
+  }
+  /*//////////////////////// HAMBURGER CSS END //////////////////////////////*/
+  
+  /*//////////////////////// MEDIA QUERIES CSS START //////////////////////////////*/
+  /* Media query to show the hamburger menu on small screens */
+  @media screen and (max-width: 995px) {
+    /* Hide regular navbar links */
+    .navbar a {
+      display: none;
+    }
+  
+    /* #title-img {
+      display: none;
+    } */
+  
+    /* Show hamburger menu button */
+    .container {
+      display: block;
+    }
+    @media screen and (max-width: 700px){
+      .hamburger-menu {
+     
+      top: 1.5rem;
+      right: 3rem;
+     
+  }}
+  @media screen and (max-width: 360px){
+    .hamburger-menu {
+   
+    top: 1rem;
+    right: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
+   
+  }}
+  
+    /* Show menu on hover, commented out over preferential button click event
+    .navbar .menu-button:hover + .menu,
+    .navbar .menu-button:focus + .menu {
+      display: block;
+    } */
+  
+  
+  }
+  /*//////////////////////// MEDIA QUERIES CSS END //////////////////////////////*/
+  
+.item {
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
 
-h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
-.event {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #aaa;
+    border: solid #247BA0;
+    padding: 15px;
     border-radius: 5px;
-}
+    margin: 15px;
+    text-align: center;
 
-.event-name {
-    font-weight: bold;
-    font-size: 24px;
-    margin-bottom: 5px;
 }
-
-.event-datetime {
-    font-size: 19px;
-    margin-bottom: 5px;
+h1 {
+  font-size: 30px;
+  margin-top: 100px;
+  text-align: center;
+  margin-bottom: 50px;
 }
-
-.event-location {
-    font-size: 18px;
-}
-
-.hidden {
-    display: none;
-}
-
-.form-group {
-    margin-bottom: 10px;
-}
-
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-input[type=text], input[type=date], input[type=time] {
+#new-post-button, #submit{
+    width: 75px;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px rgb(90, 90, 90);
+    border: none;
+    outline: none;
     padding: 5px;
     border-radius: 5px;
-    border: 1px solid #aaa;
-    font-size: 18px;
+    color: white;
+    background-color: #247BA0;
+
+
+}
+.item > h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #247BA0;
+    
 }
 
-button[type=submit] {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #4caf50;
-    color: #aaa;
-    border-radius: 5px;
-    cursor: pointer;
+.user{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 5px;
 }
+
+.user > img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user > p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #247BA0;
+}
+
+.item > img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/*  CSS for create new item   */
+.post-popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  .post-popup-content {
+    background-color: #ceeee2;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  .bold{
+    font-weight: bold;
+  }
+  
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  #title, #content, #imageURL{
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+    box-shadow: 0px 0px 3px gray;
+  }
+
+
+  .post-popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
+
+  .post-popup-content > form
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+  
+    .post-popup-content > form > input {
+        width: 100%;
+        height: 10px;
+        border-radius: 5px;
+        border: solid #247BA0;
+        padding: 10px;
+        font-size: 1.5rem;
+    }
+
+    .post-popup-content > form > textarea {
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        border: solid #247BA0;
+        padding: 10px;
+        font-size: 1.5rem;
+    }
+
+    .post-popup-content>form > label {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #d9b8e8;
+    }
