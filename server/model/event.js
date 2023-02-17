@@ -11,7 +11,7 @@ class Event {
     static async showAll() {
         try {
             const response = await client.query("SELECT * FROM event;");
-            console.log(response.rows);
+            //console.log(response.rows);
             return response.rows.map(e => new Event(e));
         } catch (err) {
             return ({

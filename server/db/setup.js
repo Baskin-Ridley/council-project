@@ -25,7 +25,7 @@ const setupDatabase = async () => {
     await client.query(eventSchema);
     await client.query(seed);
 
-    console.log("Database created!")
+    //console.log("Database created!")
 
 }
 

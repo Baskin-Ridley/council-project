@@ -32,11 +32,11 @@ let clicked = null;
 function adminPopup(date, events) {
         
     clicked = date
-    console.log(events)
+    //console.log(events)
     const eventForDay = events.find(e => e.activity_date == clicked);
 
     if (eventForDay) {
-       console.log(eventForDay.title)
+       //console.log(eventForDay.title)
         document.getElementById('eventText').innerText = eventForDay.title;
         document.addEventListener("DOMContentLoaded", () => {
             deleteEventPopup.style.display = 'block';
@@ -120,7 +120,7 @@ function showPopup(date, events, popup) {
               "August", "September", "October", "November", "December"];
 
         const emptyDays = firstDayOfMonth.getDay();
-        // console.log(emptyDays)
+        // //console.log(emptyDays)
 
         document.getElementById('monthDisplay').innerText = `${months[month]} ${year}`;
 

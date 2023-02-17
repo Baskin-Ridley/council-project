@@ -91,7 +91,7 @@ function showPopup(date, events) {
               "August", "September", "October", "November", "December"];
 
         const emptyDays = firstDayOfMonth.getDay();
-        // console.log(emptyDays)
+        // //console.log(emptyDays)
 
         document.getElementById('monthDisplay').innerText = `${months[month]} ${year}`;
 
@@ -126,7 +126,7 @@ function showPopup(date, events) {
                         
                         const eventForDay = events.find(e => e.activity_date == tileDate);
                         
-                        console.log(events)
+                        //console.log(events)
                         if (eventForDay) {
                             const eventDiv = document.createElement('div');
                             eventDiv.classList.add('event');
@@ -141,7 +141,7 @@ function showPopup(date, events) {
                     const isAdmin = window.localStorage.getItem("permission")? true : false
                     
                     const isLoggedIn= window.localStorage.getItem("token")? true : false
-                    console.log(isLoggedIn)
+                    //console.log(isLoggedIn)
                         if (isLoggedIn && isAdmin){
                             
                             dayTile.addEventListener('click', () => adminPopup(tileDate, events));

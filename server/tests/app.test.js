@@ -46,7 +46,7 @@ describe(`POST /register`, () => {
 
         test("should return the number of keys of the json object: 2", async () => {
             const response = await request(app).post(`/register`).send(data)
-            console.log(response.body)
+            //console.log(response.body)
             expect(Object.keys(response.body).length).toBe(1);
         })
 

@@ -14,15 +14,15 @@ const getPayload = () => {
     return JSON.parse(atob(parts[1]))
   }
   let userId = getPayload().sub
-  console.log(userId)
+  //console.log(userId)
 
   async function newItemListing() {
     const response = await fetch('http://localhost:3000/knowledge');
     const data = await response.json();
-    console.log(data)
+    //console.log(data)
 
     data.forEach(async item => {
-      console.log(item)
+      //console.log(item)
       
       let responseID = await fetch('http://localhost:3000/user/', {
         method: 'POST',
@@ -34,7 +34,7 @@ const getPayload = () => {
         })
       });
       let dataID = await responseID.json();
-      console.log(dataID)
+      //console.log(dataID)
 
       const itemContainer = document.createElement('div');
     //   const itemPhoto = document.createElement('img');
@@ -50,11 +50,11 @@ const getPayload = () => {
       deleteButton.onclick = function () {
         deletePost(item.knowledge_id);
       };
-      console.log(item.user_id)
+      //console.log(item.user_id)
       deleteButton.style.display = item.user_id === userId ? 'block' : 'none'; // Show the delete button if the user id matches
   
       // Set the attributes and content for the elements:
-      console.log(item.title)
+      //console.log(item.title)
       itemContainer.className = 'item';
     //   itemPhoto.src = item.img_url;
       itemTitle.textContent = item.title;
@@ -81,7 +81,7 @@ const getPayload = () => {
   }
 
   async function deletePost(id){
-    console.log({id})
+    //console.log({id})
     const response = await fetch("http://localhost:3000/knowledge/delete", {
       method: "POST",
       headers: {
@@ -92,7 +92,7 @@ const getPayload = () => {
       }),
     });
     location.reload()
-    console.log("deleted")
+    //console.log("deleted")
   }
 
   function newPostPopup() {
@@ -130,7 +130,7 @@ const getPayload = () => {
         // img_url: imageURLInput.value,
         user_id: userId, // get user_id from the token
       };
-      console.log(data)
+      //console.log(data)
 
       newPostPopup.style.display = "none";
   
@@ -144,7 +144,7 @@ const getPayload = () => {
         });
   
         const responseData = await response.json();
-        console.log(responseData);
+        //console.log(responseData);
       } catch (error) {
         console.error(error);
       }

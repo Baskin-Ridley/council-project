@@ -17,7 +17,7 @@ class User {
 
     try {
       const response = await client.query("SELECT * FROM users WHERE user_id = $1;", [id])
-      console.log(response.rows[0])
+      //console.log(response.rows[0])
       return response.rows[0]
     } catch (err) {
       return ({
