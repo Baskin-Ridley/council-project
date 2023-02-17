@@ -99,3 +99,9 @@ VALUES
         1,
         TRUE
     );
+
+INSERT INTO landscape (title, img_url, activity_date, user_id, content)
+VALUES 
+  ('Join us for our weekly community garden event', 'https://placebear.com/500/500', '2023-02-21', 1, 'Come join us for a fun day of gardening in our community garden! We will be planting flowers and vegetables, and we could use your help.'),
+  ('Litter picking event in the park', 'https://placekitten.com/500/500', '2023-03-05', 2, 'Help keep our community clean by joining us for a litter picking event in the local park. We will provide gloves and bags. Hope to see you there!'),
+  ('Volunteers needed for neighborhood cleanup day', 'https://placebear.com/500/500', '2023-04-02', 3, 'Our neighborhood cleanup day is coming up, and we need volunteers to help us pick up litter and beautify the area. It will be a great opportunity to meet your neighbors and make a positive impact.');
