@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const { createPostKnowledge, deletePostKnowledge, returnPostKnowledge } = require("../controller/knowledge")
+const secureRoute = require('../router/secureRouter')
 const knowledgeRouter = Router()
 
 

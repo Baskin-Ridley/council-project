@@ -1,4 +1,16 @@
+  
+// // // //////// Hamburger menu on click event to pull out sidebar animation START /////////////
+// document.querySelector(".hamburger-menu").addEventListener("click", () => {
+//     document.querySelector(".container").classList.toggle("change")
+//   })
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector(".hamburger-menu").addEventListener("click", () => {
+      document.querySelector(".container").classList.toggle("change")
+    })
+  })
+  /////////// Hamburger menu on click event to pull out sidebar animation END /////////////
 
+  
 const calendar = document.getElementById('calendar');
 const newEventPopup = document.getElementById('newEventPopup');
 const deleteEventPopup = document.getElementById('deleteEventPopup');
@@ -16,41 +28,58 @@ let clicked = null;
 
 
 ////////////     POP-UP WINDOWS FUNCTIONS     ////////////////////////
+
 function adminPopup(date, events) {
         
     clicked = date
-    const eventForDay = events.find(e => e.activity_date == date);
+    console.log(events)
+    const eventForDay = events.find(e => e.activity_date == clicked);
 
     if (eventForDay) {
+       console.log(eventForDay.title)
         document.getElementById('eventText').innerText = eventForDay.title;
-        deleteEventPopup.style.display = 'block';
+        document.addEventListener("DOMContentLoaded", () => {
+            deleteEventPopup.style.display = 'block';
+            })
+          
+        
     } else {
-        newEventPopup.style.display = 'block';
+        document.addEventListener("DOMContentLoaded", () => {
+            newEventPopup.style.display = 'block';
+            })
+       
     }
-
-    popupShadow.style.display = 'block';
+    document.addEventListener("DOMContentLoaded", () => {
+        popupShadow.style.display = 'block';
+        })
+    
 }
 
-
-function volunteerPopup(date,events) {
+function volunteerPopup(date, events) {
     clicked = date
 
-    const eventForDay = events.find(e => e.activity_date == date);
+    const eventForDay = events.find(e => e.activity_date == clicked);
 
     if (eventForDay) {
         document.getElementById('evText').innerText = eventForDay.title;
-        volunteerEventPopup.style.display = 'block';
-        popupShadow.style.display = 'block';
+       
+        document.addEventListener("DOMContentLoaded", () => {
+            volunteerEventPopup.style.display = 'block';
+            popupShadow.style.display = 'block';
+            })
     } 
 }
 
-function showPopup(date, events) {
-        
-    const eventForDay = events.find(e => e.activity_date == date);
+function showPopup(date, events, popup) {
+        clicked = date
+    const eventForDay = events.find(e => e.activity_date == clicked);
 
     if (eventForDay) {
         popup.style.display = 'block';
-        popupShadow.style.display = 'block';
+        document.addEventListener("DOMContentLoaded", () => {
+            popupShadow.style.display = 'block';
+            })
+       
     } 
 }
 
@@ -103,7 +132,7 @@ function showPopup(date, events) {
             const dayTile = document.createElement('div');
             dayTile.classList.add('day');
             let tileDate
-            if(month<10){ 
+            if(month <10){ 
                 tileDate = `${year}-0${month + 1}-${i - emptyDays}`
             } else{
                  tileDate = `${year}-${month + 1}-${i - emptyDays}`
@@ -118,15 +147,14 @@ function showPopup(date, events) {
                 if (i - emptyDays === day && nav === 0) {
                     dayTile.id = 'currentDay';
                 }
-                const response = await fetch("https://council-project-production-f9df.up.railway.app/events")
+                const response = await fetch("http://localhost:3000/events")
                   let events  =[]
                     if (response.status == 200) { 
                           events= await response.json();
                         events.map(e=>{return e.activity_date = e.activity_date.slice(0,10)}) 
                         
                         const eventForDay = events.find(e => e.activity_date == tileDate);
-                        
-                        console.log(events)
+                       
                         if (eventForDay) {
                             const eventDiv = document.createElement('div');
                             eventDiv.classList.add('event');
@@ -141,9 +169,9 @@ function showPopup(date, events) {
                     const isAdmin = window.localStorage.getItem("permission")? true : false
                     
                     const isLoggedIn= window.localStorage.getItem("token")? true : false
-                    console.log(isLoggedIn)
+                    
                         if (isLoggedIn && isAdmin){
-                            
+                                                       
                             dayTile.addEventListener('click', () => adminPopup(tileDate, events));
                         } else if (isLoggedIn) {
                                                                 
@@ -172,9 +200,12 @@ function showPopup(date, events) {
 
   ///////////////     ACTION BUTTONS       ///////////////////////////
 
-    async function saveEvent() {
+    async function saveEvent(clicked, eventTitleInput) {
         if (eventTitleInput.value) {
-            eventTitleInput.classList.remove('error');
+            document.addEventListener("DOMContentLoaded", () => {
+                eventTitleInput.classList.remove('error');
+                })
+            
             
             const options = {
                 method: "POST",
@@ -188,7 +219,7 @@ function showPopup(date, events) {
                 })
             }
         
-            const result = await fetch("https://council-project-production-f9df.up.railway.app/events", options);
+            const result = await fetch("http://localhost:3000/events", options);
         
             if (result.status == 201) {
                 closePopup();
@@ -203,14 +234,16 @@ function showPopup(date, events) {
 
    async function deleteEvent() {
         const date= clicked;
-
-        const res = await fetch(`https://council-project-production-f9df.up.railway.app/events/${date}`, { method: "DELETE" });
+        let fun =1
+        const res = await fetch(`http://localhost:3000/events/${date}`, { method: "DELETE" });
     
         if (res.status != 204) {
             alert("Unable to delete event.")
         } 
-
-        closePopup();
+        if(!fun ) {
+            closePopup()
+          }
+       
     
     }
 
@@ -230,7 +263,7 @@ async function volunteer(){
                 })
             }
         
-            const result = await fetch("https://council-project-production-f9df.up.railway.app/volunteers", options);
+            const result = await fetch("http://localhost:3000/volunteers", options);
        
             if (result.status == 201) {
                 closePopup();
@@ -259,7 +292,14 @@ async function volunteer(){
         document.getElementById('closePopButton').addEventListener('click', closePopup);
         document.getElementById('cancelButton').addEventListener('click', closePopup);
     }
+    document.addEventListener("DOMContentLoaded", () => { initButtons();
+        renderCalendar();
+      })
+   
+ 
 
-    initButtons();
-    renderCalendar();
-
+    if (typeof exports !== 'undefined') {
+        module.exports = {
+            adminPopup, showPopup, closePopup, renderCalendar, saveEvent, deleteEvent, volunteerPopup, volunteer
+        };
+    }

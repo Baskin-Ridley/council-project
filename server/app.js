@@ -35,5 +35,5 @@ app.use(express.static(path.join(__dirname, '../client'), {
 app.use("/", router);
 app.use("/market", markRouter);
 app.use("/knowledge", knowledgeRouter);
-app.use("/land", landRouter);
+app.use("/landscape", landRouter);
 module.exports = app;

@@ -86,7 +86,7 @@ describe(`POST /register`, () => {
 
 })
 
-describe(`GET /login`, () => {
+describe(`POST /login`, () => {
 
 
     beforeEach(async () => {
@@ -140,7 +140,7 @@ describe(`GET /login`, () => {
     describe("when requested to login with incorrect credentials: ", () => {
 
         const wrongdata = {
-            "username": "BearNecessities",
+            "username": "12321312321",
             "password": "1231231"
         }
 
@@ -162,9 +162,11 @@ describe(`GET /login`, () => {
         //should respond with a json file containing the error
         test("should return a json file containing the error ", async () => {
             const response = await request(app).post(`/login`).send(wrongdata)
-            expect(response.body.error).toBe("username and password do not match")
+            expect(response.body.message).toBe("Incorrect username or password")
         })
 
-
     })
+
+
+
 })

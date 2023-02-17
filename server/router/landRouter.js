@@ -1,5 +1,6 @@
 const { Router } = require("express")
 const { createPostLandscape, deletePostLandscape, returnPostLandscape } = require("../controller/landscape")
+
 const landRouter = Router()
 
 
