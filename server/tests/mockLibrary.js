@@ -147,7 +147,7 @@ function showPopup(date, events, popup) {
                 if (i - emptyDays === day && nav === 0) {
                     dayTile.id = 'currentDay';
                 }
-                const response = await fetch("http://localhost:3000/events")
+                const response = await fetch("https://council-project-production-f9df.up.railway.app/events")
                   let events  =[]
                     if (response.status == 200) { 
                           events= await response.json();
@@ -219,7 +219,7 @@ function showPopup(date, events, popup) {
                 })
             }
         
-            const result = await fetch("http://localhost:3000/events", options);
+            const result = await fetch("https://council-project-production-f9df.up.railway.app/events", options);
         
             if (result.status == 201) {
                 closePopup();
@@ -235,7 +235,7 @@ function showPopup(date, events, popup) {
    async function deleteEvent() {
         const date= clicked;
         let fun =1
-        const res = await fetch(`http://localhost:3000/events/${date}`, { method: "DELETE" });
+        const res = await fetch(`https://council-project-production-f9df.up.railway.app/events/${date}`, { method: "DELETE" });
     
         if (res.status != 204) {
             alert("Unable to delete event.")
@@ -263,7 +263,7 @@ async function volunteer(){
                 })
             }
         
-            const result = await fetch("http://localhost:3000/volunteers", options);
+            const result = await fetch("https://council-project-production-f9df.up.railway.app/volunteers", options);
        
             if (result.status == 201) {
                 closePopup();

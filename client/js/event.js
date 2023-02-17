@@ -23,14 +23,14 @@ const getPayload = () => {
   
   
     async function newItemListing() {
-      const response = await fetch('http://localhost:3000/landscape');
+      const response = await fetch('https://council-project-production-f9df.up.railway.app/landscape');
       const data = await response.json();
       console.log(data)
   
       data.forEach(async item => {
         console.log(item)
         
-        let responseID = await fetch('http://localhost:3000/user/', {
+        let responseID = await fetch('https://council-project-production-f9df.up.railway.app/user/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -88,7 +88,7 @@ const getPayload = () => {
   
     async function deletePost(id){
       console.log("hello", id)
-      const response = await fetch("http://localhost:3000/landscape/delete", {
+      const response = await fetch("https://council-project-production-f9df.up.railway.app/landscape/delete", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -141,7 +141,7 @@ const getPayload = () => {
         newPostPopup.style.display = "none";
     
         try {
-          const response = await fetch("http://localhost:3000/landscape/create", {
+          const response = await fetch("https://council-project-production-f9df.up.railway.app/landscape/create", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
