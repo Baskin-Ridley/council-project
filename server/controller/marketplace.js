@@ -5,7 +5,7 @@ async function createPostMarketplace(req, res) {
 
     const data = req.body;
 
-    console.log(data)
+    //console.log(data)
     try {
         if (["content", "user_id", "img_url", "title"].every(key => Object.hasOwn(data, key))) {
             const post = await Marketplace.create(data)
@@ -29,11 +29,11 @@ async function deletePostMarketplace(req, res) {
     try {
 
         const toDelete = await Marketplace.getById(data)
-        console.log(toDelete)
+        //console.log(toDelete)
         if (toDelete) {
-            console.log("deleting")
+            //console.log("deleting")
             await Marketplace.destroy(data)
-            console.log("deleted")
+            //console.log("deleted")
             res.status(200).json({ message: "post deleted successfully" })
         } else {
             throw new Error("cannot locate post with this ID")

@@ -56,7 +56,7 @@ class Marketplace {
         try {
 
             const response = await client.query("SELECT * FROM marketplace ORDER BY marketplace_id DESC")
-            console.log(response.rows)
+            //console.log(response.rows)
             return response.rows.map(m => new Marketplace(m))
 
         } catch (err) {
@@ -76,7 +76,7 @@ class Marketplace {
         })
 
         try {
-            console.log("inbetween")
+            //console.log("inbetween")
             const response = await client.query("DELETE FROM marketplace * WHERE marketplace_id = $1;", [id])
 
         } catch (err) {

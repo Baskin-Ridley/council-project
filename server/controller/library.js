@@ -31,7 +31,7 @@ const jwt = require("jsonwebtoken")
 async function show(req, res) {
     try {
         const events = await Event.getAll();
-        console.log(events)
+        //console.log(events)
         res.status(200).json(events);
     } catch (err) {
         res.status(500).json({ "error": err.message })
@@ -50,7 +50,7 @@ async function volunteer (req, res) {
         const data = [id, activity_date]
         
             const user = await Volunteer.create(data);
-            console.log(user)
+            //console.log(user)
             res.status(201).send(user);
         
         
