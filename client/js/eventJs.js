@@ -45,6 +45,7 @@ const getPayload = () => {
         const itemContainer = document.createElement('div');
         const itemPhoto = document.createElement('img');
         const itemTitle = document.createElement('h2');
+        const itemDate = document.createElement('div')
         const itemDescription = document.createElement('p');
         const userContainer = document.createElement('div');
         const userProfilePicture = document.createElement('img');
@@ -64,6 +65,7 @@ const getPayload = () => {
         itemContainer.className = 'item';
         itemPhoto.src = item.img_url;
         itemTitle.textContent = item.title;
+        itemDate.textContent = item.activity_date.slice(0, 10);
         itemDescription.textContent = item.content;
         userContainer.className = 'user';
         userProfilePicture.src = dataID.profile_pic;
@@ -76,6 +78,7 @@ const getPayload = () => {
         // Add all elements to the item container:
         itemContainer.appendChild(userContainer);
         itemContainer.appendChild(itemTitle);
+        itemContainer.appendChild(itemDate);
         itemContainer.appendChild(itemPhoto);
         itemContainer.appendChild(itemDescription);
         itemContainer.appendChild(deleteButton);
@@ -88,7 +91,7 @@ const getPayload = () => {
   
     async function deletePost(id){
       console.log("hello", id)
-      const response = await fetch("http://localhost:3000/landscape/delete", {
+      const response = await fetch("http://localhost:3000/event/delete", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -141,7 +144,7 @@ const getPayload = () => {
         newPostPopup.style.display = "none";
     
         try {
-          const response = await fetch("http://localhost:3000/landscape/create", {
+          const response = await fetch("http://localhost:3000/event/create", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
