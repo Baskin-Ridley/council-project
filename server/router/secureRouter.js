@@ -14,7 +14,7 @@ const secureRoute = async (req, res, next) => {
         req.currentUser = userToVerify
         next()
     } catch (err) {
-        res.status(401).json({ meesage: err })
+        res.status(401).json({ message: err })
     }
 }
 

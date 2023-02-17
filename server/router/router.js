@@ -12,7 +12,7 @@ router.post("/login", loginUser)
 router.post("/events", library.create)
 router.delete("/events/:date", library.destroy)
 router.get("/events", library.show)
-router.post("/user", secureRoute, findById)
+router.post("/user", findById)
 
 router.post("/volunteers", library.volunteer)
 
