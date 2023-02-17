@@ -6,7 +6,7 @@ const secureRoute = async (req, res, next) => {
         if (!req.headers.authorization) {
             throw new Error("Missing headers")
         }
-        console.log("secureRoute Headers true")
+        //console.log("secureRoute Headers true")
         const token = req.headers.authorization.replace("Bearer ", "")
         const payload = jwt.verify(token, process.env.SECRET)
         const userToVerify = await User.getById(payload.sub)

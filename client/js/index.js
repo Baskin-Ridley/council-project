@@ -6,7 +6,7 @@ const getPayload = () => {
   return JSON.parse(atob(parts[1]))
 }
 let userId = getPayload().sub
-console.log(userId)
+//console.log(userId)
 
 let clickSignup = () => {
   document.querySelector(".login").style = "transform:translateX(-90%);";
@@ -61,7 +61,7 @@ function registerForm() {
       document.querySelector("#signup-email").value = ""
       document.querySelector("#signup-img_url").value = ""
     } catch (err) {
-      console.log(err)
+      //console.log(err)
     }
   }
   sendRegistration()
@@ -90,9 +90,9 @@ document.getElementById("login-btn").addEventListener("click", async () => {
 
   const response = await fetch("https://council-project-production-f9df.up.railway.app/login", options);
   const data = await response.json();
-  console.log(data)
-  console.log(data.token[0])
-  console.log(data.token[1])
+  //console.log(data)
+  //console.log(data.token[0])
+  //console.log(data.token[1])
 
   if (response.status == 200) {
 

@@ -29,11 +29,11 @@ async function deletePostKnowledge(req, res) {
     try {
 
         const toDelete = await Knowledge.getById(data)
-        console.log(toDelete)
+        //console.log(toDelete)
         if (toDelete) {
-            console.log("deleting")
+            //console.log("deleting")
             await Knowledge.destroy(data)
-            console.log("deleted")
+            //console.log("deleted")
             res.status(200).json({ message: "post deleted successfully" })
         } else {
             throw new Error("cannot locate post with this ID")

@@ -7,7 +7,7 @@ const getPayload = () => {
   }
   
   let userId = getPayload().sub
-  console.log(userId)
+  //console.log(userId)
   
   // // //////// Hamburger menu on click event to pull out sidebar animation START /////////////
   document.addEventListener("DOMContentLoaded", () => {
@@ -25,10 +25,10 @@ const getPayload = () => {
     async function newItemListing() {
       const response = await fetch('https://council-project-production-f9df.up.railway.app/landscape');
       const data = await response.json();
-      console.log(data)
+      //console.log(data)
   
       data.forEach(async item => {
-        console.log(item)
+        //console.log(item)
         
         let responseID = await fetch('https://council-project-production-f9df.up.railway.app/user/', {
           method: 'POST',
@@ -40,7 +40,7 @@ const getPayload = () => {
           })
         });
         let dataID = await responseID.json();
-        console.log(dataID)
+        //console.log(dataID)
   
         const itemContainer = document.createElement('div');
         const itemPhoto = document.createElement('img');
@@ -57,15 +57,16 @@ const getPayload = () => {
         deleteButton.onclick = function () {
           deletePost(item.marketplace_id);
         };
-        console.log(item.user_id)
+        //console.log(item.user_id)
         deleteButton.style.display = item.user_id === userId ? 'block' : 'none'; // Show the delete button if the user id matches
     
         // Set the attributes and content for the elements:
-        console.log(item.title)
+        //console.log(item.title)
         itemContainer.className = 'item';
         itemPhoto.src = item.img_url;
         itemTitle.textContent = item.title;
         itemDate.textContent = item.activity_date.slice(0, 10);
+        //console.log(itemDate.textContent)
         itemDescription.textContent = item.content;
         userContainer.className = 'user';
         userProfilePicture.src = dataID.profile_pic;
@@ -90,7 +91,6 @@ const getPayload = () => {
     }
   
     async function deletePost(id){
-      console.log("hello", id)
       const response = await fetch("https://council-project-production-f9df.up.railway.app/event/delete", {
         method: "POST",
         headers: {
@@ -101,7 +101,7 @@ const getPayload = () => {
         }),
       });
       location.reload()
-      console.log("deleted")
+      //console.log("deleted")
     }
   
     function newPostPopup() {
@@ -139,7 +139,7 @@ const getPayload = () => {
           img_url: imageURLInput.value,
           user_id: userId, // get user_id from the token
         };
-        console.log(data)
+        //console.log(data)
   
         newPostPopup.style.display = "none";
     
@@ -153,7 +153,7 @@ const getPayload = () => {
           });
     
           const responseData = await response.json();
-          console.log(responseData);
+          //console.log(responseData);
         } catch (error) {
           console.error(error);
         }

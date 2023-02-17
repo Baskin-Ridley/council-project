@@ -6,7 +6,7 @@ const getPayload = () => {
   return JSON.parse(atob(parts[1]))
 }
 let userId = getPayload().sub
-console.log(userId)
+//console.log(userId)
 
 const newPostBtn = document.getElementById("new-post-btn");
 const deletePostBtn = document.getElementById("delete-post-btn");
