@@ -22,7 +22,8 @@ describe(`POST /register`, () => {
         let data = {
             "username": "SAMPLE TEXT",
             "password": "SAMPLE TEXT",
-            "email": "SAMPLE TEXT"
+            "email": "SAMPLE TEXT",
+            "img_url": "SAMPLE TEXT"
         }
 
 
@@ -136,32 +137,34 @@ describe(`GET /login`, () => {
 
 
     })
-    //     describe("when requested to login with incorrect credentials: ", () => {
+    describe("when requested to login with incorrect credentials: ", () => {
+
+        const wrongdata = {
+            "username": "BearNecessities",
+            "password": "1231231"
+        }
 
 
-    //         let username = "test"
-    //         let password = "121231323"
-
-    //         //should return status code "404"
-    //         test("should return status code 404", async () => {
-    //             const response = await request(app).get(`/flashcard/login/${username}/${password}`)
-    //             expect(response.statusCode).toBe(404)
-    //         })
+        //should return status code "404"
+        test("should return status code 404", async () => {
+            const response = await request(app).post(`/login`).send(wrongdata)
+            expect(response.statusCode).toBe(404)
+        })
 
 
-    //         // should respond with a json content header
-    //         test("should return  json content header", async () => {
-    //             const response = await request(app).get(`/flashcard/login/${username}/${password}`)
-    //             expect(response.headers['content-type']).toEqual(expect.stringContaining("json"))
-    //         })
+        // should respond with a json content header
+        test("should return  json content header", async () => {
+            const response = await request(app).post(`/login`).send(wrongdata)
+            expect(response.headers['content-type']).toEqual(expect.stringContaining("json"))
+        })
 
 
-    //         //should respond with a json file containing the error
-    //         test("should return a json file containing the error ", async () => {
-    //             const response = await request(app).get(`/flashcard/login/${username}/${password}`)
-    //             expect(response.body.error).toBe("username and password do not match")
-    //         })
+        //should respond with a json file containing the error
+        test("should return a json file containing the error ", async () => {
+            const response = await request(app).post(`/login`).send(wrongdata)
+            expect(response.body.error).toBe("username and password do not match")
+        })
 
 
-    //     })
+    })
 })
