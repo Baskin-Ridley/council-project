@@ -86,7 +86,7 @@ class User {
       throw new Error("Please provide both an username and password")
     }
     if (!await this.getByUsername(username)) {
-      throw new Error("Username doesn't exists!")
+      throw new Error("Incorrect username or password")
     }
     try {
       const user = await this.getByUsername(username)
