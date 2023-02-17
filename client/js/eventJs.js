@@ -158,10 +158,30 @@ const getPayload = () => {
   
       });
     }
+
+    
     document.addEventListener("DOMContentLoaded", () => {
       newItemListing();
       newPostPopup();
     });
+
+    const logOut = document.querySelector("#logout")
+    logOut.addEventListener("click", (e)=>{
+        e.preventDefault()
+        removeTokenFromLocalStorage()
+    })
+    const signOut = document.querySelector("#signout")
+    signOut.addEventListener("click", (e)=>{
+        e.preventDefault()
+        removeTokenFromLocalStorage()
+    })
+  
+    const removeTokenFromLocalStorage = () =>{
+      window.localStorage.removeItem("token")
+      window.localStorage.removeItem("permission")
+      window.location.assign("index.html")
+  }
+  
   
   module.exports = {
     getPayload,
